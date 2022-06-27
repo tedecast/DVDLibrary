@@ -100,7 +100,7 @@ public class DVDLibraryView {
     }
     
     public String displayKeepAddingBanner() {
-       return io.readString("Keep Adding DVDs? (y/n)");
+       return io.readString("DVD successfully added. Keep adding DVDs? (y/n)");
     }
     
     public DVD getNewDVDInfo() {
@@ -119,12 +119,15 @@ public class DVDLibraryView {
         currentDVD.setStudioName(studioName);
         currentDVD.setUserRating(userRating);
         return currentDVD;
+            
     }
     
-    public void displayAddSuccessBanner(){
-        io.readString("DVD successfully added.");
+//    public void displayAddSuccessBanner(){
+//        io.readString("DVD successfully added. Please hit enter to continue.");
+//    }
+    public void displayFinishedAddingResult(){
+        io.readString("Finished adding DVDs. Please hit enter to continue.");
     }
-    
     
     public void displayEditDVDBanner(){
         io.print("=== Edit DVD ===");
@@ -173,7 +176,7 @@ public class DVDLibraryView {
     }
     
     public void displayFinishedRemoveResult(){
-        io.readString("Finished removing DVDs");
+        io.readString("Finished removing DVDs. Please hit enter to continue.");
     }
     
     public void displayRemoveDVDBanner(){

@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Teresa
  */
 public class UserIOConsoleImpl implements UserIO {
-     Scanner userInput = new Scanner(System.in);
+    Scanner userInput = new Scanner(System.in);
 
     @Override
     public void print(String message) {
