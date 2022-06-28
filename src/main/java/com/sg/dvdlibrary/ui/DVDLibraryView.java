@@ -54,7 +54,7 @@ public class DVDLibraryView {
         return io.readString("Please enter your comments.");
     }
     
-    public String getEditTitle(){
+    public String getEditTitleID(){
         return io.readString("Please enter a DVD ID to edit.");
     }
     
@@ -107,7 +107,6 @@ public class DVDLibraryView {
     public void displayAddDVDBanner() {
         io.print("=== Add DVD ===");
     }
-   
     public DVD getNewDVDInfo() {
         
         String dvdID = getDVDID();
@@ -128,13 +127,6 @@ public class DVDLibraryView {
         return currentDVD;
             
     }
-    
-//    public DVD getNewDVDTitle(){
-//        String title = getTitle();
-//        DVD currentDVD = new DVD(title);
-//        return currentDVD;
-//    }
-    
     public String displayKeepAddingBanner() {
        return io.readString("DVD successfully added. Keep adding DVDs? (y/n)");
     }
@@ -149,15 +141,14 @@ public class DVDLibraryView {
     public void displayFinishedEditingResult(){
         io.readString("Finished editing DVDs. Please hit enter to continue.");
     }
-//    public String displayKeepEditingBanner(){
-//        return io.readString("Keep removing DVDs? (y/n)");
-//    } 
-    
+
     
     public void displayRemoveDVDBanner(){
         io.print("=== Remove DVD ===");
     }
-    
+    public String getRemoveID() {
+        return io.readString("Please enter a DVD ID to remove.");
+    }
     public String displayKeepRemovingBanner(){
         return io.readString("Keep removing DVDs? (y/n)");
     }       
@@ -170,9 +161,7 @@ public class DVDLibraryView {
         
     }   
     
-//    public void displayEditDVDBanner(){
-//        io.print("=== Edit DVD ===");
-//    }
+    
     public int printEditMenuAndGetSelection(DVD dvd){
         if (dvd != null){
             io.print("=== Edit DVD ===");
@@ -203,9 +192,7 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
-//    public String displayKeepEditingBanner(){
-//        return io.readString("Keep editing DVDs? (y/n)");
-//    }
+
     public String displayKeepEditingBanner(){
         return io.readString("DVD successfully edited. Keep editing DVDs? (y/n)");
     }
@@ -213,7 +200,6 @@ public class DVDLibraryView {
         if(dvdRecord != null){
             io.print("DVD successfully edited.");
         }else{
-//            displayDoesNotExist();
         io.print("No such DVD exists.");
         }
         getHitEnter();
