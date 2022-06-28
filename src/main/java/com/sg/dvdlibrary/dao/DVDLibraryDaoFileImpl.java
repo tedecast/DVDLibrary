@@ -59,7 +59,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     @Override
     public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
         loadLibrary();
-        prevDVDTitle = dvd.getTitle();
+        prevDVDTitle = dvd.getDVDID();
         DVD editDVD = dvds.remove(prevDVDTitle);
         editDVD = dvds.put(dvdID, dvd);
         writeLibrary();
@@ -69,54 +69,54 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     
 
     @Override
-    public DVD changeTitle(String title, String dvd) throws DVDLibraryDaoException {
+    public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setTitle(dvd);
         writeLibrary();
         return dvdToEdit;
     }
     
     @Override
-    public DVD changeReleaseDate(String title, String releaseDate) throws DVDLibraryDaoException {
+    public DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setReleaseDate(releaseDate);
         writeLibrary();
         return dvdToEdit;
     }
 
     @Override
-    public DVD changeMpaaRating(String title, String mpaaRating) throws DVDLibraryDaoException {
+    public DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setMpaaRating(mpaaRating);
         writeLibrary();
         return dvdToEdit;
     }
 
     @Override
-    public DVD changeDirectorName(String title, String directorName) throws DVDLibraryDaoException {
+    public DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setDirectorsName(directorName);
         writeLibrary();
         return dvdToEdit;
     }
 
     @Override
-    public DVD changeUserRating(String title, String userRating) throws DVDLibraryDaoException {
+    public DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setUserRating(userRating);
         writeLibrary();
         return dvdToEdit;
     }
 
     @Override
-    public DVD changeStudioName(String title, String studioName) throws DVDLibraryDaoException {
+    public DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(title);
+        DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setStudioName(studioName);
         writeLibrary();
         return dvdToEdit;
@@ -125,13 +125,15 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     private DVD unmarshallDVD(String dvdAsText){
         
         String[] dvdTokens = dvdAsText.split(DELIMITER);
-        String title = dvdTokens[0];
-        DVD dvdFromFile = new DVD(title);
-        dvdFromFile.setReleaseDate(dvdTokens[1]);
-        dvdFromFile.setMpaaRating(dvdTokens[2]);
-        dvdFromFile.setDirectorsName(dvdTokens[3]);
-        dvdFromFile.setStudioName(dvdTokens[4]);
-        dvdFromFile.setUserRating(dvdTokens[5]);
+        String dvdID = dvdTokens[0];
+        
+        DVD dvdFromFile = new DVD(dvdID);
+        dvdFromFile.setTitle(dvdTokens[1]);
+        dvdFromFile.setReleaseDate(dvdTokens[2]);
+        dvdFromFile.setMpaaRating(dvdTokens[3]);
+        dvdFromFile.setDirectorsName(dvdTokens[4]);
+        dvdFromFile.setStudioName(dvdTokens[5]);
+        dvdFromFile.setUserRating(dvdTokens[6]);
         return dvdFromFile;
         
     }
@@ -154,14 +156,15 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
             currentLine = scanner.nextLine();
             currentDVD = unmarshallDVD(currentLine);
             
-            dvds.put(currentDVD.getTitle(), currentDVD);
+            dvds.put(currentDVD.getDVDID(), currentDVD);
         }
         scanner.close();
     }
     
     private String marshallDVD(DVD aDVD){
-        String dvdAsText = aDVD.getTitle() + DELIMITER;
+        String dvdAsText = aDVD.getDVDID() + DELIMITER;
         
+        dvdAsText += aDVD.getTitle() + DELIMITER;
         dvdAsText += aDVD.getReleaseDate() + DELIMITER;
         dvdAsText += aDVD.getMpaaRating() + DELIMITER;
         dvdAsText += aDVD.getDirectorsName() + DELIMITER;

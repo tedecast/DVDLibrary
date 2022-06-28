@@ -55,7 +55,7 @@ public class DVDLibraryView {
     }
     
     public String getEditTitle(){
-        return io.readString("Please enter a DVD title to edit.");
+        return io.readString("Please enter a DVD ID to edit.");
     }
     
     public void getHitEnter() {

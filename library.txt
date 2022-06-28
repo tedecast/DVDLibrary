@@ -1,3 +1,4 @@
-null::s::Me::YEEE::Okay::No::
-Nope::Yes::No::Alright::S::s::
-Meow::s::Me::YEEE::Okay::No::
+0002::WOOOO::Yes::Okay::YUP::NO::m::
+0001::Meowy Catma::1990::PG::WOW::Amazing::SO GOOD::
+0001::OKAAAAY::1990::PG::WOW::Amazing::SO GOOD::
+0002::WOOOO::Yes::Okay::YUP::NO::m::
