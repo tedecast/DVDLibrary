@@ -88,7 +88,7 @@ public class DVDLibraryController {
         while(keepAdding){
             view.displayAddDVDBanner();
             DVD newDVD = view.getNewDVDInfo();
-            dao.addDVD(newDVD.getTitle(), newDVD);
+            dao.addDVD(newDVD.getDVDID(), newDVD);
             String userResponse = view.displayKeepAddingBanner();
             if(userResponse.equals("n")){
                 keepAdding = false;

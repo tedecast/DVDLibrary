@@ -190,7 +190,7 @@ public class DVDLibraryView {
         }
         return io.readInt("Please select from the above choices.", 1, 8);
     }
-     public int printEditMenu(){
+    public int printEditMenu(){
         io.print("=== Edit DVD ===");
         io.print("1. Title");
         io.print("2. Release Date");
