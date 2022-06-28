@@ -169,13 +169,13 @@ public class DVDLibraryController {
                                 unknownCommand();
                         } 
                         String userResponse = view.displayKeepEditingBanner();
-                            if(userResponse.equals("n")){
-                                continueEdit = false;
-                            }
+                        if(userResponse.equals("n")){
+                            keepEditing = false;
+                        }
                     }
-                    view.displayFinishedEditingResult();
-                }
-        }
+                }            
+            }
+        view.displayFinishedEditingResult();
     }    
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
           String newTitle = view.getTitle();
