@@ -25,7 +25,7 @@ public interface DVDLibraryDao {
     DVD removeDVD(String title) throws DVDLibraryDaoException;
     
     
-    DVD changeTitle(String title) throws DVDLibraryDaoException;
+    DVD changeTitle(String title, String dvd) throws DVDLibraryDaoException;
             
     DVD changeReleaseDate(String title, String releaseDate) throws DVDLibraryDaoException;
     

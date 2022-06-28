@@ -69,10 +69,10 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     
 
     @Override
-    public DVD changeTitle(String title) throws DVDLibraryDaoException {
+    public DVD changeTitle(String title, String dvd) throws DVDLibraryDaoException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(title);
-        dvdToEdit.setTitle(title);
+        dvdToEdit.setTitle(dvd);
         writeLibrary();
         return dvdToEdit;
     }

@@ -26,9 +26,9 @@ public class DVD {
 //        this.id = id;
 //    }
 //    
-//    public DVD(String title) {
-//        this.title = title;
-//    }
+    public DVD(String title) {
+        this.title = title;
+    }
 
     public String getTitle() {
         return title;
@@ -76,7 +76,5 @@ public class DVD {
 
     public void setUserRating(String userRating) {
         this.userRating = userRating;
-    }
-    
-    
+    } 
 }

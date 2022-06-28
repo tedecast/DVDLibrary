@@ -139,7 +139,7 @@ public class DVDLibraryController {
                     
                 switch(editMenuSelection) {
                     case 1:
-                        dvd.setTitle(view.getTitle());
+                        editTitle();
                         break;
                     case 2: 
                         editReleaseDate(title);
@@ -178,10 +178,12 @@ public class DVDLibraryController {
         }
     }
     
-//    private void editTitle(String title) throws DVDLibraryDaoException {
+    private void editTitle() throws DVDLibraryDaoException {
+            view.getNewDVDTitle();
+//        String title = getTitle();
 //        DVD editedDVD = dao.changeTitle(title);
 //        view.displayEditResult();
-//    }
+   }
     
     private void editReleaseDate(String title) throws DVDLibraryDaoException {
         String newReleaseDate = view.getReleaseDate();

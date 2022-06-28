@@ -122,6 +122,13 @@ public class DVDLibraryView {
         return currentDVD;
             
     }
+    
+    public DVD getNewDVDTitle(){
+        String title = getTitle();
+        DVD currentDVD = new DVD(title);
+        return currentDVD;
+    }
+    
     public String displayKeepAddingBanner() {
        return io.readString("DVD successfully added. Keep adding DVDs? (y/n)");
     }
