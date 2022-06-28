@@ -1,4 +1,3 @@
-Yay::y::y::y::y::y::
-Meow::Meeeow::m::m::m::m::
-Woof::Woof::Woof::Woof::Woof::Woof::
-Yes::s::s::s::s::s::
+Yay::Yes::No::No::No::No::
+Meow::Meeeeow::OOOG::Meowy Catey::YES::Wow::
+Woof::MEOW::YAY::Woof::Woof::Woof::

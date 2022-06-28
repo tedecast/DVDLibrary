@@ -47,7 +47,15 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         writeLibrary();
         return prevDVD;
     }
-
+    
+    @Override
+    public DVD removeDVD(String title) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD removedDVD = dvds.remove(title);
+        writeLibrary();
+        return removedDVD;
+    }
+    
     @Override
     public DVD editDVD(String title, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
         loadLibrary();
@@ -57,20 +65,63 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         writeLibrary();
         return editDVD;
     }
+    
+    
 
     @Override
-    public DVD removeDVD(String title) throws DVDLibraryDaoException {
+    public DVD changeTitle(String title) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD removedDVD = dvds.remove(title);
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setTitle(title);
         writeLibrary();
-        return removedDVD;
+        return dvdToEdit;
+    }
+    
+    @Override
+    public DVD changeReleaseDate(String title, String releaseDate) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setReleaseDate(releaseDate);
+        writeLibrary();
+        return dvdToEdit;
     }
 
-//    @Override
-//    public DVD viewDVD(String dvdLibrary, DVD dvd) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-    
+    @Override
+    public DVD changeMpaaRating(String title, String mpaaRating) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setMpaaRating(mpaaRating);
+        writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeDirectorName(String title, String directorName) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setDirectorsName(directorName);
+        writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeUserRating(String title, String userRating) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setUserRating(userRating);
+        writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeStudioName(String title, String studioName) throws DVDLibraryDaoException {
+        loadLibrary();
+        DVD dvdToEdit = dvds.get(title);
+        dvdToEdit.setStudioName(studioName);
+        writeLibrary();
+        return dvdToEdit;
+    }
+
     private DVD unmarshallDVD(String dvdAsText){
         
         String[] dvdTokens = dvdAsText.split(DELIMITER);
