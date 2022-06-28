@@ -119,23 +119,22 @@ public class DVDLibraryController {
         view.displayExitBanner();
     }
     private int getEditMenuSelection() throws DVDLibraryDaoException {
-        view.displayEditDVDBanner();
-        String title = view.getEditTitle();
-        DVD dvd = dao.getDVD(title);
-        return view.printEditMenuAndGetSelection(dvd);
+//        view.displayEditDVDBanner();
+//        String title = view.getEditTitle();
+//        DVD dvd = dao.getDVD(title);
+        return view.printEditMenu();
     }
     private void editDVD() throws DVDLibraryDaoException {
 //        view.displayEditDVDBanner();
         String title = view.getEditTitle();
         DVD dvd = dao.getDVD(title); 
-//        
-//        if (dvd == null){
-//            view.displayDoesNotExist();
-//            } else {
+        
+        if (dvd == null){
+            view.displayDoesNotExist();
+            } else {
                 int editMenuSelection = 0;
                 boolean keepEditing = true;
                 while (keepEditing){
-//                    view.displayEditDVDBanner();
                     editMenuSelection = getEditMenuSelection();
                     
                 switch(editMenuSelection) {
@@ -177,7 +176,7 @@ public class DVDLibraryController {
             }
             view.displayFinishedEditingResult();
         }
-    //}
+    }
     
 //    private void editTitle(String title) throws DVDLibraryDaoException {
 //        DVD editedDVD = dao.changeTitle(title);

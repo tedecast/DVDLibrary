@@ -177,6 +177,19 @@ public class DVDLibraryView {
         }
         return io.readInt("Please select from the above choices.", 1, 8);
     }
+     public int printEditMenu(){
+        io.print("=== Edit DVD ===");
+        io.print("1. Title");
+        io.print("2. Release Date");
+        io.print("3. MPAA rating");
+        io.print("4. Director's name");
+        io.print("5. Studio");
+        io.print("6. Comments");
+        io.print("7. Edit All");
+        io.print("8. Exit");
+            
+        return io.readInt("Please select from the above choices.", 1, 8);
+    }
 //    public String displayKeepEditingBanner(){
 //        return io.readString("Keep editing DVDs? (y/n)");
 //    }
