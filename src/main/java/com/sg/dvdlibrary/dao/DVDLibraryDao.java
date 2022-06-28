@@ -16,24 +16,24 @@ public interface DVDLibraryDao {
 
     List<DVD> getAllDVDs() throws DVDLibraryDaoException;
 
-    DVD getDVD(String title) throws DVDLibraryDaoException;
+    DVD getDVD(String dvdID) throws DVDLibraryDaoException;
 
-    DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException;
+    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException;
     
-    DVD editDVD(String title, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException;
+    DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException;
     
-    DVD removeDVD(String title) throws DVDLibraryDaoException;
+    DVD removeDVD(String dvdID) throws DVDLibraryDaoException;
     
     
-    DVD changeTitle(String title, String dvd) throws DVDLibraryDaoException;
+    DVD changeTitle(String dvdID, String title) throws DVDLibraryDaoException;
             
-    DVD changeReleaseDate(String title, String releaseDate) throws DVDLibraryDaoException;
+    DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryDaoException;
     
-    DVD changeMpaaRating(String title, String mpaaRating) throws DVDLibraryDaoException;
+    DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryDaoException;
     
-    DVD changeDirectorName(String title, String directorName) throws DVDLibraryDaoException;
+    DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryDaoException;
     
-    DVD changeUserRating(String title, String userRating) throws DVDLibraryDaoException;
+    DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryDaoException;
     
-    DVD changeStudioName(String title, String studioName) throws DVDLibraryDaoException;
+    DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryDaoException;
 }

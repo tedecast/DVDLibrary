@@ -35,33 +35,33 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD getDVD(String title) throws DVDLibraryDaoException {
+    public DVD getDVD(String dvdID) throws DVDLibraryDaoException {
         loadLibrary();
-        return dvds.get(title);
+        return dvds.get(dvdID);
     }
 
     @Override
-    public DVD addDVD(String title, DVD dvd) throws DVDLibraryDaoException {
+    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD prevDVD = dvds.put(title, dvd);
+        DVD prevDVD = dvds.put(dvdID, dvd);
         writeLibrary();
         return prevDVD;
     }
     
     @Override
-    public DVD removeDVD(String title) throws DVDLibraryDaoException {
+    public DVD removeDVD(String dvdID) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD removedDVD = dvds.remove(title);
+        DVD removedDVD = dvds.remove(dvdID);
         writeLibrary();
         return removedDVD;
     }
     
     @Override
-    public DVD editDVD(String title, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
+    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
         loadLibrary();
         prevDVDTitle = dvd.getTitle();
         DVD editDVD = dvds.remove(prevDVDTitle);
-        editDVD = dvds.put(title, dvd);
+        editDVD = dvds.put(dvdID, dvd);
         writeLibrary();
         return editDVD;
     }

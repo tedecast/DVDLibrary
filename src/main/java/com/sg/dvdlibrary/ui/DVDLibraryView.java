@@ -32,7 +32,10 @@ public class DVDLibraryView {
         return io.readInt("Please select from the above choices.", 1, 6);
     }
     
-    public String getTitle(){
+    public String getDVDID() {
+        return io.readString("Please enter a DVD ID.");
+    }
+    public String getTitle() {
         return io.readString("Please enter a DVD title.");
     }
     public String getReleaseDate() {
@@ -68,7 +71,8 @@ public class DVDLibraryView {
     }
     public void displayDVDList(List<DVD> dvdList){
         for (DVD currentDVD : dvdList) {
-            String dvdInfo = String.format("%s : %s : %s : %s : %s : %s",
+            String dvdInfo = String.format("%s : %s : %s : %s : %s : %s : %s",
+                   currentDVD.getDVDID(),
                    currentDVD.getTitle(),                   
                    currentDVD.getReleaseDate(),
                    currentDVD.getMpaaRating(),
@@ -85,6 +89,7 @@ public class DVDLibraryView {
     }
     public void displayDVDInfo(DVD dvd){
         if (dvd != null){
+            io.print("Id: " + dvd.getDVDID());
             io.print("Title: " + dvd.getTitle());
             io.print("Release Date: " + dvd.getReleaseDate());
             io.print("MPAA Rating: " + dvd.getMpaaRating());
@@ -105,6 +110,7 @@ public class DVDLibraryView {
    
     public DVD getNewDVDInfo() {
         
+        String dvdID = getDVDID();
         String title = getTitle();
         String releaseDate = getReleaseDate();
         String mpaaRating = getMpaaRating();
@@ -112,7 +118,7 @@ public class DVDLibraryView {
         String studioName = getStudioName();
         String userRating = getUserRating();
         
-        DVD currentDVD = new DVD(title); //id instead
+        DVD currentDVD = new DVD(dvdID); //id instead
         currentDVD.setTitle(title);
         currentDVD.setReleaseDate(releaseDate);
         currentDVD.setMpaaRating(mpaaRating);
@@ -123,11 +129,11 @@ public class DVDLibraryView {
             
     }
     
-    public DVD getNewDVDTitle(){
-        String title = getTitle();
-        DVD currentDVD = new DVD(title);
-        return currentDVD;
-    }
+//    public DVD getNewDVDTitle(){
+//        String title = getTitle();
+//        DVD currentDVD = new DVD(title);
+//        return currentDVD;
+//    }
     
     public String displayKeepAddingBanner() {
        return io.readString("DVD successfully added. Keep adding DVDs? (y/n)");
