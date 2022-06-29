@@ -195,7 +195,7 @@ public class DVDLibraryView {
     public String displayKeepEditingBanner(){
         return io.readString("Keep editing DVDs? (y/n)");
     }
-    public void displayEditDVDResult(DVD dvdRecord){
+    public void displayEditResult(DVD dvdRecord){
         if(dvdRecord != null){
             displayEditSuccess();
         }else{

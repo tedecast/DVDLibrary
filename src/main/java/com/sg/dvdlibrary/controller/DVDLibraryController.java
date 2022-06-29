@@ -133,66 +133,57 @@ public class DVDLibraryController {
     }
     private void editDVD() throws DVDLibraryDaoException {
         
-            String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
-            DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-            boolean keepGoing = true; // boolean for y/n statement
-            // while keepGoing loop
-            if(keepGoing){
-            while(editedDVD == null){
-                view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
-                String userResponse = view.displayKeepEditingBanner();// displays keep editing? y/n
-                if(userResponse.equals("n")){
-                    keepGoing = false; // n, keep going stops.
-                }else{        
-                dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
-                editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-                view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
-                
-            }// end of editedDVD == null
-            }// end of keepGoing while loop
-                int editMenuSelection = 0;
-                boolean keepEditing = true;
-                while(keepEditing){
-                    // Once selection made, displays successfully edited and opens the... for the current dvd
-                    // wants to ask Continue Editing(y/n), if yes, loops back to please enter a DVD ID.
-                    // if n, finished editng DVDs. Please hit enter to continue and goes back to main menu. 
-                    editMenuSelection = getEditMenuSelection(); // Edit Menu without the +summary
+        String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
+        DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
+            
+        while(editedDVD == null){
+            view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
+            dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
+            editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
+            view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
+        }
+        int editMenuSelection = 0;
+        boolean keepEditing = true;
+        while(keepEditing){
+            // Once selection made, displays successfully edited and opens the... for the current dvd
+            // wants to ask Continue Editing(y/n), if yes, loops back to please enter a DVD ID.
+            // if n, finished editng DVDs. Please hit enter to continue and goes back to main menu. 
+            editMenuSelection = getEditMenuSelection(); // Edit Menu without the +summary
 
-                    switch(editMenuSelection) {
-                        case 1:
-                            editTitle(dvdID);
-                            break;
-                        case 2: 
-                            editReleaseDate(dvdID);
-                                break;
-                        case 3: 
-                            editMpaaRating(dvdID);
-                            break;
-                        case 4:
-                            editDirectorName(dvdID);
-                            break;
-                        case 5:
-                            editStudioName(dvdID);
-                            break;
-                        case 6:
-                            editUserRating(dvdID);
-                            break;
-                        case 7: 
-                            editReleaseDate(dvdID);
-                            editMpaaRating(dvdID);
-                            editDirectorName(dvdID);
-                            editStudioName(dvdID);
-                            editUserRating(dvdID);
-                            break;
-                        case 8:
-                            keepEditing = false;
-                            break;
-                        default:
-                        unknownCommand();
-                    }  
-                }
-            }
-            view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
+            switch(editMenuSelection) {
+                case 1:
+                    editTitle(dvdID);
+                    break;
+                case 2: 
+                    editReleaseDate(dvdID);
+                    break;
+                case 3: 
+                    editMpaaRating(dvdID);
+                    break;
+                case 4:
+                    editDirectorName(dvdID);
+                    break;
+                case 5:
+                    editStudioName(dvdID);
+                    break;
+                case 6:
+                    editUserRating(dvdID);
+                    break;
+                case 7: 
+                    editReleaseDate(dvdID);
+                    editMpaaRating(dvdID);
+                    editDirectorName(dvdID);
+                    editStudioName(dvdID);
+                    editUserRating(dvdID);
+                    break;
+                case 8:
+                    keepEditing = false;
+                    break;
+                default:
+                    unknownCommand();
+            }  
+        }
+        view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
     }           
              
        
