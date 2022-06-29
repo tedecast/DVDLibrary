@@ -170,6 +170,8 @@ public class DVDLibraryController {
             }  
         }
         view.displayFinishedEditingResult();
+    }else{
+        view.displayDoesNotExist();
     }            
 }         
     
