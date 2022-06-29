@@ -161,7 +161,7 @@ public class DVDLibraryView {
         
     }
     
-    public void displayDVD(DVD dvd) {
+    public void displayDVDSummary(DVD dvd) {
         if (dvd != null) {
             io.print("=== #"+ dvd.getDVDID()+" Summary ===");
             io.print("Title: " + dvd.getTitle());
@@ -170,10 +170,11 @@ public class DVDLibraryView {
             io.print("Director's name: " + dvd.getDirectorsName());
             io.print("User Rating: " + dvd.getUserRating());
             io.print("Studio: "+ dvd.getStudioName());
-        } else {
-            displayDoesNotExist();
-        }
-        getHitEnter();
+        } //else {
+//            displayDoesNotExist();
+//            
+//        }
+        //getHitEnter();
     }
     
     public int printEditMenu(){
@@ -189,7 +190,7 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
-
+    
     public String displayKeepEditingBanner(){
         return io.readString("Keep editing DVDs? (y/n)");
     }
