@@ -133,18 +133,31 @@ public class DVDLibraryController {
     }
     private void editDVD() throws DVDLibraryDaoException {
         
-        String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
-        DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-            
-        while(editedDVD == null){
-            view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
+        int editMenuSelection = 0;
+        String dvdID;
+        DVD editedDVD;
+        String userResponse = "";
+        boolean keepEditing = true;
+        boolean preStopEdit = false; //premature stop editing
+        while(keepEditing){
             dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
             editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-            view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
-        }
-        int editMenuSelection = 0;
-        boolean keepEditing = true;
-        while(keepEditing){
+            
+            while(editedDVD == null){
+                
+                view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
+                userResponse = view.displayKeepEditingBanner();
+                if(userResponse.equals("n")){
+                    preStopEdit = true;
+                    break;
+                }
+                dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
+                editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
+                view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD 
+            }if (preStopEdit){
+                keepEditing = false;
+                break;
+            } 
             // Once selection made, displays successfully edited and opens the... for the current dvd
             // wants to ask Continue Editing(y/n), if yes, loops back to please enter a DVD ID.
             // if n, finished editng DVDs. Please hit enter to continue and goes back to main menu. 
@@ -153,21 +166,27 @@ public class DVDLibraryController {
             switch(editMenuSelection) {
                 case 1:
                     editTitle(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 2: 
                     editReleaseDate(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 3: 
                     editMpaaRating(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 4:
                     editDirectorName(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 5:
                     editStudioName(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 6:
                     editUserRating(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 7: 
                     editReleaseDate(dvdID);
@@ -175,13 +194,17 @@ public class DVDLibraryController {
                     editDirectorName(dvdID);
                     editStudioName(dvdID);
                     editUserRating(dvdID);
+                    userResponse = view.displayKeepEditingBanner();
                     break;
                 case 8:
                     keepEditing = false;
                     break;
                 default:
                     unknownCommand();
-            }  
+            }
+            if(userResponse.equals("n")){
+                keepEditing = false;
+            }
         }
         view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
     }           
