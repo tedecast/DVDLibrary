@@ -137,7 +137,7 @@ public class DVDLibraryController {
             DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
             boolean keepGoing = true; // boolean for y/n statement
             // while keepGoing loop
-            while(keepGoing){
+            if(keepGoing){
             while(editedDVD == null){
                 view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
                 String userResponse = view.displayKeepEditingBanner();// displays keep editing? y/n
