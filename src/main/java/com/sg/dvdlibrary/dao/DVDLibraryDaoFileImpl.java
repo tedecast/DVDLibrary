@@ -43,13 +43,16 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
     
     @Override
-    public DVD getDVDTitle(String title, DVD dvd) throws DVDLibraryDaoException {
+    public DVD findDVDByTitle(String title) throws DVDLibraryDaoException {
         loadLibrary();
         Collection<DVD> dvdLibrary = dvds.values();
         for (DVD currentDVD : dvdLibrary) {
-            return currentDVD;
+           if(currentDVD.getTitle().equals(title)){
+               return currentDVD;
+           };
         }
-        return dvd;
+        writeLibrary();
+        return null;
     }
 
     @Override

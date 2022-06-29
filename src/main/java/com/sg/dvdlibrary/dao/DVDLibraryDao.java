@@ -7,7 +7,6 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -20,7 +19,7 @@ public interface DVDLibraryDao {
 
     DVD getDVD(String dvdID) throws DVDLibraryDaoException;
     
-    Map<String, DVD> getDVDTitle(String title) throws DVDLibraryDaoException;
+    DVD findDVDByTitle(String title) throws DVDLibraryDaoException;
 
     DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException;
     

@@ -94,7 +94,7 @@ public class DVDLibraryController {
     
     private void findDVDByTitle() throws DVDLibraryDaoException {
         String title = view.getTitle();
-        DVD dvd = dao.getDVD(title);
+        DVD dvd = dao.findDVDByTitle(title);
         view.displayDVDByTitle(dvd);
     }
     
