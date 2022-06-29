@@ -132,7 +132,6 @@ public class DVDLibraryController {
                 dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
                 editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
                 view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
-//                view.getHitEnter(); // Hit enter to continue after displaying ^
             }
                 int editMenuSelection = 0;
                 boolean keepEditing = true;

@@ -134,14 +134,6 @@ public class DVDLibraryView {
         io.readString("Finished adding DVDs. Please hit enter to continue.");
     }
     
-    public void displayFinishedRemoveResult(){
-        io.readString("Finished removing DVDs. Please hit enter to continue.");
-    }
-    
-    public void displayFinishedEditingResult(){
-        io.readString("Finished editing DVDs. Please hit enter to continue.");
-    }
-
     
     public void displayRemoveDVDBanner(){
         io.print("=== Remove DVD ===");
@@ -160,6 +152,9 @@ public class DVDLibraryView {
         }
         
     }
+    public void displayFinishedRemoveResult(){
+        io.readString("Finished removing DVDs. Please hit enter to continue.");
+    }
     
     public void displayDVDSummary(DVD dvd) {
         if (dvd != null) {
@@ -170,13 +165,8 @@ public class DVDLibraryView {
             io.print("Director's name: " + dvd.getDirectorsName());
             io.print("User Rating: " + dvd.getUserRating());
             io.print("Studio: "+ dvd.getStudioName());
-        } //else {
-//            displayDoesNotExist();
-//            
-//        }
-        //getHitEnter();
+        } 
     }
-    
     public int printEditMenu(){
         io.print("=== Edit DVD ===");
         io.print("1. Title");
@@ -194,6 +184,10 @@ public class DVDLibraryView {
     public String displayKeepEditingBanner(){
         return io.readString("Keep editing DVDs? (y/n)");
     }
+    public void displayFinishedEditingResult(){
+        io.readString("Finished editing DVDs. Please hit enter to continue.");
+    }
+ 
     public void displayEditedDVDResult(DVD dvdRecord){
         if(dvdRecord != null){
             io.print("DVD successfully edited.");
