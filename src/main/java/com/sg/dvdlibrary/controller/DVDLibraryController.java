@@ -123,7 +123,8 @@ public class DVDLibraryController {
         return view.printEditMenu();
     }
     private void editDVD() throws DVDLibraryDaoException {
-    
+        boolean keepGoing = true; // keep going after ask user if they want to continue editing
+        
         String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
         DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
         if(editedDVD != null){
