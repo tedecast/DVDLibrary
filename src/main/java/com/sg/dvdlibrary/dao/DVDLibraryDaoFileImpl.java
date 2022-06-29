@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,27 +42,15 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         return dvds.get(dvdID);
     }
     
-    
-
     @Override
-    public Map<String, DVD> getDVDTitle(String title) throws DVDLibraryDaoException {
+    public DVD getDVDTitle(String title, DVD dvd) throws DVDLibraryDaoException {
         loadLibrary();
-        Map<String, DVD> dvdTitle = dvds
-                .entrySet()
-                .stream()
-                .filter((dvd) -> dvd.getValue().getMpaaRating().equalsIgnoreCase(title))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        return dvdTitle;
+        Collection<DVD> dvdLibrary = dvds.values();
+        for (DVD currentDVD : dvdLibrary) {
+            return currentDVD;
+        }
+        return dvd;
     }
-
-//    
-//    @Override
-//    public DVD getDVDTitle(String title) throws DVDLibraryDaoException {
-//        loadLibrary();
-//        DVD dvdTitle = dvds.get(title);
-//        writeLibrary();
-//        return dvdTitle;
-//    }
 
     @Override
     public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException {
@@ -88,9 +77,8 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         writeLibrary();
         return editDVD;
     }
-    
-    
 
+   
     @Override
     public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryDaoException {
         loadLibrary();
