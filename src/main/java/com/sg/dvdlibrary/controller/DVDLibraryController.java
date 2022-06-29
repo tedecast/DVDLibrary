@@ -186,34 +186,40 @@ public class DVDLibraryController {
              
        
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
-          String newTitle = view.getTitle(); // Please enter a title
-          dao.changeTitle(dvdID, newTitle); // changes titladd . 
+        String newTitle = view.getTitle(); // Please enter a title
+        dao.changeTitle(dvdID, newTitle); // changes title 
+        view.displaySuccessfullyEdited(); // displays edit success
           
     }
     
     private void editReleaseDate(String dvdID) throws DVDLibraryDaoException {
         String newReleaseDate = view.getReleaseDate();
         dao.changeReleaseDate(dvdID, newReleaseDate);
+        view.displaySuccessfullyEdited();
     }
     
     private void editMpaaRating(String dvdID) throws DVDLibraryDaoException {
         String newMpaaRating = view.getMpaaRating();
         dao.changeMpaaRating(dvdID, newMpaaRating);
+        view.displaySuccessfullyEdited();
     }
     
     private void editDirectorName(String dvdID) throws DVDLibraryDaoException {
         String newDirectorName = view.getDirectorName();
         dao.changeDirectorName(dvdID, newDirectorName);
+        view.displaySuccessfullyEdited();
     }
     
     private void editUserRating(String dvdID) throws DVDLibraryDaoException {
         String newUserRating = view.getUserRating();
         dao.changeUserRating(dvdID, newUserRating);
+        view.displaySuccessfullyEdited();
     }
     
     private void editStudioName(String dvdID) throws DVDLibraryDaoException {
         String newStudioName = view.getStudioName();
         dao.changeStudioName(dvdID, newStudioName);
+        view.displaySuccessfullyEdited();
     }
     
 }

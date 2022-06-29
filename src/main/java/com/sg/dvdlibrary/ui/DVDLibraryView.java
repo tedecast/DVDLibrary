@@ -189,13 +189,12 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
+    public void displaySuccessfullyEdited() {
+        io.print("DVD successfully edited.");
+    }
     public String displayKeepEditingBanner(){
         return io.readString("Keep editing DVDs? (y/n)");
     }
-    public void displayFinishedEditingResult(){
-        io.readString("Finished editing DVDs. Please hit enter to continue.");
-    }
- 
     public void displayEditedDVDResult(DVD dvdRecord){
         if(dvdRecord != null){
             io.print("DVD successfully edited.");
@@ -203,7 +202,9 @@ public class DVDLibraryView {
             displayDoesNotExist();
         }
     }
-    
+    public void displayFinishedEditingResult(){
+        io.readString("Finished editing DVDs. Please hit enter to continue.");
+    }
     
     public void displayExitBanner() {
         io.print("Good Bye!!!");
