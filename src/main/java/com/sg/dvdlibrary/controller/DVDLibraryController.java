@@ -84,23 +84,23 @@ public class DVDLibraryController {
     
     private void viewDVDInfo() throws DVDLibraryDaoException {
         view.displayDisplayDVDBanner();
-        String dvdID = view.getDVDID();
-        DVD dvd = dao.getDVD(dvdID);
-        view.displayDVDInfo(dvd);
+        String dvdID = view.getDVDID(); // Gets DVD ID from user
+        DVD dvd = dao.getDVD(dvdID); 
+        view.displayDVDInfo(dvd); // displays result whether it exists or not
     }
     
     private void addDVD() throws DVDLibraryDaoException {
         boolean keepAdding = true;
         while(keepAdding){
             view.displayAddDVDBanner();
-            DVD newDVD = view.getNewDVDInfo();
+            DVD newDVD = view.getNewDVDInfo(); // asks user for newDVDInfo
             dao.addDVD(newDVD.getDVDID(), newDVD);
             String userResponse = view.displayKeepAddingBanner();
             if(userResponse.equals("n")){
                 keepAdding = false;
             } 
         }
-        view.displayFinishedAddingResult();
+        view.displayFinishedAddingResult(); // finished adding, please hit enter to continue
     }
     
     public void removeDVD() throws DVDLibraryDaoException {
@@ -108,7 +108,7 @@ public class DVDLibraryController {
         while(keepRemoving){
             view.displayRemoveDVDBanner();
             String dvdID = view.getRemoveID();
-            DVD removedDVD = dao.removeDVD(dvdID);
+            DVD removedDVD = dao.removeDVD(dvdID); // asks user for DVD ID to remove
             view.displayRemoveResult(removedDVD);
             String userResponse = view.displayKeepRemovingBanner();
             if(userResponse.equals("n")){
@@ -177,8 +177,8 @@ public class DVDLibraryController {
              
        
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
-          String newTitle = view.getTitle();
-          dao.changeTitle(dvdID, newTitle);
+          String newTitle = view.getTitle(); // Please enter a title
+          dao.changeTitle(dvdID, newTitle); // changes title
     }
     
     private void editReleaseDate(String dvdID) throws DVDLibraryDaoException {

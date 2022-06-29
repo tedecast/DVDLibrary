@@ -18,6 +18,8 @@ public class DVD {
     private String userRating;
     private String dvdID;
     
+    //dvdID does not have a setter, read only field.
+    //Unable to change ID once set, can only change below. 
     public DVD(String dvdID) {
         this.dvdID = dvdID;
     }
