@@ -132,56 +132,56 @@ public class DVDLibraryController {
         return view.printEditMenu();
     }
     private void editDVD() throws DVDLibraryDaoException {
+        
+            String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
+            DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
             
-        String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
-        DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-            
-        while(editedDVD == null){
+            while(editedDVD == null){
                 view.displayDoesNotExist();
                 dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
                 editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
                 view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
             }
-            int editMenuSelection = 0;
-            boolean keepEditing = true;
-            while(keepEditing){
+                int editMenuSelection = 0;
+                boolean keepEditing = true;
+                while(keepEditing){
                     
-                editMenuSelection = getEditMenuSelection(); // Edit Menu without the +summary
+                    editMenuSelection = getEditMenuSelection(); // Edit Menu without the +summary
 
-                switch(editMenuSelection) {
-                    case 1:
-                        editTitle(dvdID);
-                        break;
-                    case 2: 
-                        editReleaseDate(dvdID);
-                        break;
-                    case 3: 
-                        editMpaaRating(dvdID);
-                        break;
-                    case 4:
-                        editDirectorName(dvdID);
-                        break;
-                    case 5:
-                        editStudioName(dvdID);
-                        break;
-                    case 6:
-                        editUserRating(dvdID);
-                        break;
-                    case 7: 
-                        editReleaseDate(dvdID);
-                        editMpaaRating(dvdID);
-                        editDirectorName(dvdID);
-                        editStudioName(dvdID);
-                        editUserRating(dvdID);
-                        break;
-                    case 8:
-                        keepEditing = false;
-                        break;
-                    default:
-                    unknownCommand();
-                }  
-            }
-            view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
+                    switch(editMenuSelection) {
+                        case 1:
+                            editTitle(dvdID);
+                            break;
+                        case 2: 
+                            editReleaseDate(dvdID);
+                                break;
+                        case 3: 
+                            editMpaaRating(dvdID);
+                            break;
+                        case 4:
+                            editDirectorName(dvdID);
+                            break;
+                        case 5:
+                            editStudioName(dvdID);
+                            break;
+                        case 6:
+                            editUserRating(dvdID);
+                            break;
+                        case 7: 
+                            editReleaseDate(dvdID);
+                            editMpaaRating(dvdID);
+                            editDirectorName(dvdID);
+                            editStudioName(dvdID);
+                            editUserRating(dvdID);
+                            break;
+                        case 8:
+                            keepEditing = false;
+                            break;
+                        default:
+                        unknownCommand();
+                    }  
+                }
+                view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
     }           
              
        

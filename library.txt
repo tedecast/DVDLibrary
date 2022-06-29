@@ -1,4 +1,4 @@
-0004::HelloWorld::1990::PG::Shorely Temple::Studio::Yes::
+0004::HElloWorld::1990::PG::Shorely Temple::Studio::Yes::
 0005::Okay::No::Yes::No::No::no::
 0002::YAYYY::Yes::OKAAAY::YUP::NO::m::
-0003::mooo::3::3::3::meow::3::
+0003::Okay::3::3::3::meow::3::
