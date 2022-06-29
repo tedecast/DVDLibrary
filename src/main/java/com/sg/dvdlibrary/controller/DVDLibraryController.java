@@ -45,7 +45,7 @@ public class DVDLibraryController {
                         viewDVDInfo();
                         break;
                     case 3:
-                        io.print("FIND DVDS");
+                        findDVDByTitle();
                         break;
                     case 4: 
                         addDVD();
@@ -88,8 +88,14 @@ public class DVDLibraryController {
     private void viewDVDInfo() throws DVDLibraryDaoException {
         view.displayDisplayDVDBanner();
         String dvdID = view.getDVDID(); // Gets DVD ID from user
-        DVD dvd = dao.getDVD(dvdID); 
+        DVD dvd = dao.getDVD(dvdID); // Gets DVD and then
         view.displayDVDInfo(dvd); // displays result whether it exists or not
+    }
+    
+    private void findDVDByTitle() throws DVDLibraryDaoException {
+        String title = view.getTitle();
+        DVD dvd = dao.getDVD(title);
+        view.displayDVDByTitle(dvd);
     }
     
     private void addDVD() throws DVDLibraryDaoException {

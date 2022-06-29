@@ -24,7 +24,7 @@ public class DVDLibraryView {
         io.print("Main Menu");
         io.print("1. Display DVD List");
         io.print("2. View DVD Information");
-        io.print("3. Find DVDs");
+        io.print("3. Find DVD By Title");
         io.print("4. Add DVD");
         io.print("5. Remove DVD");
         io.print("6. Edit DVD");
@@ -104,6 +104,14 @@ public class DVDLibraryView {
         getHitEnter();
     }
     
+    public void displayDVDByTitle(DVD dvd){
+        if (dvd != null){
+            io.print("The title " + "'" + dvd.getTitle() + "'" + " exists.");
+        } else {
+            displayDoesNotExist();
+        }
+        getHitEnter();
+    }
     
     public void displayAddDVDBanner() {
         io.print("=== Add DVD ===");

@@ -9,6 +9,7 @@ import com.sg.dvdlibrary.dto.DVD;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  *
  * @author Teresa
@@ -18,6 +19,8 @@ public interface DVDLibraryDao {
     List<DVD> getAllDVDs() throws DVDLibraryDaoException;
 
     DVD getDVD(String dvdID) throws DVDLibraryDaoException;
+    
+    Map<String, DVD> getDVDTitle(String title) throws DVDLibraryDaoException;
 
     DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException;
     
@@ -25,20 +28,6 @@ public interface DVDLibraryDao {
     
     DVD removeDVD(String dvdID) throws DVDLibraryDaoException;
 
-    
-
-//    Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException;
-//
-//    Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException;
-//
-//    Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException;
-//
-//    Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException;
-//    
-//    Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException;
-    
-    
-    
     
     DVD changeTitle(String dvdID, String title) throws DVDLibraryDaoException;
             
