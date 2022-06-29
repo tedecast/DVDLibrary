@@ -44,16 +44,19 @@ public class DVDLibraryController {
                     case 2:
                         viewDVDInfo();
                         break;
-                    case 3: 
+                    case 3:
+                        io.print("FIND DVDS");
+                        break;
+                    case 4: 
                         addDVD();
                         break;
-                    case 4:
+                    case 5:
                         removeDVD();
                         break;
-                    case 5:
+                    case 6:
                         editDVD();
                         break;
-                    case 6:
+                    case 7:
                         keepGoing = false;
                         break;
                     default: 

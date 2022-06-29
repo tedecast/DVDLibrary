@@ -24,12 +24,13 @@ public class DVDLibraryView {
         io.print("Main Menu");
         io.print("1. Display DVD List");
         io.print("2. View DVD Information");
-        io.print("3. Add DVD");
-        io.print("4. Remove DVD");
-        io.print("5. Edit DVD");
-        io.print("6. Exit");
+        io.print("3. Find DVDs");
+        io.print("4. Add DVD");
+        io.print("5. Remove DVD");
+        io.print("6. Edit DVD");
+        io.print("7. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 6);
+        return io.readInt("Please select from the above choices.", 1, 7);
     }
     
     public String getDVDID() {

@@ -18,7 +18,7 @@ public class DVD {
     private String userRating;
     private String dvdID;
     
-    //dvdID does not have a setter, read only field.
+    //dvdID does not have a setter, read only field. (key)
     //Unable to change ID once set, can only change below. 
     public DVD(String dvdID) {
         this.dvdID = dvdID;
@@ -26,7 +26,8 @@ public class DVD {
     public String getDVDID(){
         return dvdID;
     }
-
+    
+    // example: title is the key, value is whatever it is set to
     public String getTitle() {
         return title;
     }
