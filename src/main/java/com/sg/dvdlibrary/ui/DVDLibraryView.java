@@ -185,7 +185,7 @@ public class DVDLibraryView {
         io.print("5. Studio");
         io.print("6. Comments");
         io.print("7. Edit All");
-        io.print("8. Edit other DVD");
+        io.print("8. Edit different DVD");
         io.print("9. Exit");
             
         return io.readInt("Please select from the above choices.", 1, 9);
@@ -201,7 +201,6 @@ public class DVDLibraryView {
             displayDoesNotExist();
         }
     }
-    
     
     
     public void displayExitBanner() {
