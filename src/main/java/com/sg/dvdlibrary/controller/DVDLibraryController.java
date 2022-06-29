@@ -126,9 +126,9 @@ public class DVDLibraryController {
     
         String dvdID = view.getEditTitleID();
         DVD editedDVD = dao.getDVD(dvdID);
-        if(editedDVD == null){
-            view.displayDoesNotExist();
-        }else{
+        if(editedDVD != null){
+//            view.displayDoesNotExist();
+//        }else{
             view.displayDVD(editedDVD);
             int editMenuSelection = 0;
             boolean keepEditing = true;
@@ -163,9 +163,6 @@ public class DVDLibraryController {
                     editUserRating(dvdID);
                     break;
                 case 8:
-                    editDVD();
-                    break;
-                case 9:
                     keepEditing = false;
                     break;
                 default:
