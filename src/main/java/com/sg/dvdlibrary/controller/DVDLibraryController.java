@@ -135,13 +135,21 @@ public class DVDLibraryController {
         
             String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
             DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
-            
+            boolean keepGoing = true; // boolean for y/n statement
+            // while keepGoing loop
+            while(keepGoing){
             while(editedDVD == null){
                 view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
+                String userResponse = view.displayKeepEditingBanner();// displays keep editing? y/n
+                if(userResponse.equals("n")){
+                    keepGoing = false; // n, keep going stops.
+                }else{        
                 dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
                 editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
                 view.displayDVDSummary(editedDVD); // Edit menu with the +summary for existing DVD
-            }
+                
+            }// end of editedDVD == null
+            }// end of keepGoing while loop
                 int editMenuSelection = 0;
                 boolean keepEditing = true;
                 while(keepEditing){
@@ -183,7 +191,8 @@ public class DVDLibraryController {
                         unknownCommand();
                     }  
                 }
-                view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
+            }
+            view.displayFinishedEditingResult(); // Finished editing DVDs. Please hit enter to continue. 
     }           
              
        
