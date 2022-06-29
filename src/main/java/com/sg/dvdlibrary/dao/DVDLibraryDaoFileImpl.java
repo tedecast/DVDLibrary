@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -44,27 +45,57 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
 
     @Override
     public Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLibrary();
+        Map<String, DVD> dvdTitle = dvds
+                .entrySet()
+                .stream()
+                .filter((dvd) -> dvd.getValue().getTitle().equalsIgnoreCase(title))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return dvdTitle;
     }
 
     @Override
     public Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       loadLibrary();
+        Map<String, DVD> dvdReleaseDate = dvds
+                .entrySet()
+                .stream()
+                .filter((dvd) -> dvd.getValue().getTitle().equalsIgnoreCase(releaseDate))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return dvdReleaseDate;
     }
 
     @Override
     public Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLibrary();
+        Map<String, DVD> dvdMpaaRating = dvds
+                .entrySet()
+                .stream()
+                .filter((dvd) -> dvd.getValue().getTitle().equalsIgnoreCase(mpaaRating))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return dvdMpaaRating;
     }
 
     @Override
     public Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLibrary();
+        Map<String, DVD> dvdDirectorsName = dvds
+                .entrySet()
+                .stream()
+                .filter((dvd) -> dvd.getValue().getTitle().equalsIgnoreCase(directorsName))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return dvdDirectorsName;
     }
 
     @Override
     public Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLibrary();
+        Map<String, DVD> dvdStudioName = dvds
+                .entrySet()
+                .stream()
+                .filter((dvd) -> dvd.getValue().getTitle().equalsIgnoreCase(studioName))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return dvdStudioName;
     }
     
     
