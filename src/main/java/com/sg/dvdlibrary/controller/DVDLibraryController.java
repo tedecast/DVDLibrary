@@ -123,60 +123,65 @@ public class DVDLibraryController {
         return view.printEditMenu();
     }
     private void editDVD() throws DVDLibraryDaoException {
-        boolean continueEdit = true;
-        while(continueEdit){
+            
+        boolean keepEditing = true;
+        while(keepEditing){   
+//            DVD dvd = dao.getDVD(dvdID); 
+//            if (dvd == null){
+//                view.displayDoesNotExist();
+//                } else {
+            int editMenuSelection = 0;
+//                    boolean keepEditing = true;
             String dvdID = view.getEditTitleID();
-            DVD dvd = dao.getDVD(dvdID); 
-            if (dvd == null){
-                view.displayDoesNotExist();
-                continueEdit = false;
-                } else {
-                    int editMenuSelection = 0;
-                    boolean keepEditing = true;
-                    while (keepEditing){
-                        editMenuSelection = getEditMenuSelection();
+            DVD editedDVD = dao.getDVD(dvdID);
+            view.displayEditedDVDResult(editedDVD);
+            String userResponse = view.displayKeepEditingBanner();
+//                    while (keepEditing){
+            editMenuSelection = getEditMenuSelection();
                         
-                        switch(editMenuSelection) {
-                            case 1:
-                                editTitle(dvdID);
-                                break;
-                            case 2: 
-                                editReleaseDate(dvdID);
-                                break;
-                            case 3: 
-                                editMpaaRating(dvdID);
-                                break;
-                            case 4:
-                                editDirectorName(dvdID);
-                                break;
-                            case 5:
-                                editStudioName(dvdID);
-                                break;
-                            case 6:
-                                editUserRating(dvdID);
-                                break;
-                            case 7: 
-                                editReleaseDate(dvdID);
-                                editMpaaRating(dvdID);
-                                editDirectorName(dvdID);
-                                editStudioName(dvdID);
-                                editUserRating(dvdID);
-                                break;
-                            case 8:
-                                keepEditing = false;
-                                break;
-                            default:
-                                unknownCommand();
-                        } 
-                        String userResponse = view.displayKeepEditingBanner();
-                        if(userResponse.equals("n")){
-                            keepEditing = false;
-                        }
-                    }
-                }            
+            switch(editMenuSelection) {
+                case 1:
+                    editTitle(dvdID);
+                    break;
+                case 2: 
+                    editReleaseDate(dvdID);
+                        break;
+                case 3: 
+                    editMpaaRating(dvdID);
+                    break;
+                case 4:
+                    editDirectorName(dvdID);
+                    break;
+                case 5:
+                    editStudioName(dvdID);
+                    break;
+                case 6:
+                    editUserRating(dvdID);
+                    break;
+                case 7: 
+                    editReleaseDate(dvdID);
+                    editMpaaRating(dvdID);
+                    editDirectorName(dvdID);
+                    editStudioName(dvdID);
+                    editUserRating(dvdID);
+                    break;
+                case 8:
+                    keepEditing = false;
+                    break;
+                default:
+                unknownCommand();
+            } 
+//                        String userResponse = view.displayKeepEditingBanner();
+            if(userResponse.equals("n")){
+            keepEditing = false;
             }
+        }
+        
         view.displayFinishedEditingResult();
-    }    
+    }            
+            //}
+        
+    //}    
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
           String newTitle = view.getTitle();
           dao.changeTitle(dvdID, newTitle);
