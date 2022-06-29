@@ -161,24 +161,24 @@ public class DVDLibraryView {
         
     }   
     
-    
-    public int printEditMenuAndGetSelection(DVD dvd){
-        if (dvd != null){
-            io.print("=== Edit DVD ===");
-            io.print("1. Title: " + dvd.getTitle());
-            io.print("2. Release Date: " + dvd.getReleaseDate());
-            io.print("3. MPAA rating: " + dvd.getMpaaRating());
-            io.print("4. Director's name: " + dvd.getDirectorsName());
-            io.print("5. Studio: " + dvd.getStudioName());
-            io.print("6. Comments: " + dvd.getUserRating());
-            io.print("7. Edit All");
-            io.print("8. Exit");
-            
-        }else{
-            displayDoesNotExist();
-        }
-        return io.readInt("Please select from the above choices.", 1, 8);
-    }
+//    
+//    public int printEditMenuAndGetSelection(DVD dvd){
+//        if (dvd != null){
+//            io.print("=== Edit DVD ===");
+//            io.print("1. Title: " + dvd.getTitle());
+//            io.print("2. Release Date: " + dvd.getReleaseDate());
+//            io.print("3. MPAA rating: " + dvd.getMpaaRating());
+//            io.print("4. Director's name: " + dvd.getDirectorsName());
+//            io.print("5. Studio: " + dvd.getStudioName());
+//            io.print("6. Comments: " + dvd.getUserRating());
+//            io.print("7. Edit All");
+//            io.print("8. Exit");
+//            
+//        }else{
+//            displayDoesNotExist();
+//        }
+//        return io.readInt("Please select from the above choices.", 1, 8);
+//    }
     public int printEditMenu(){
         io.print("=== Edit DVD ===");
         io.print("1. Title");
@@ -202,6 +202,21 @@ public class DVDLibraryView {
         }else{
             displayDoesNotExist();
         }
+    }
+    
+    public void displayDVD(DVD dvd) {
+        if (dvd != null) {
+            io.print("=== #"+ dvd.getDVDID()+" Summary ===");
+            io.print("Title: " + dvd.getTitle());
+            io.print("Release Date: " + dvd.getReleaseDate());
+            io.print("MPAA Rating: " + dvd.getMpaaRating());
+            io.print("Director's name: " + dvd.getDirectorsName());
+            io.print("User Rating: " + dvd.getUserRating());
+            io.print("Studio: "+ dvd.getStudioName());
+        } else {
+            displayDoesNotExist();
+        }
+        getHitEnter();
     }
     
     public void displayExitBanner() {

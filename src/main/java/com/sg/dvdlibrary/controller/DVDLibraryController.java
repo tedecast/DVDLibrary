@@ -118,31 +118,27 @@ public class DVDLibraryController {
         view.displayFinishedRemoveResult();
     }
    
-    private void userEditResponse() throws DVDLibraryDaoException {
-        String dvdID = view.getEditTitleID();
-        DVD editedDVD = dao.getDVD(dvdID);
-        view.displayEditedDVDResult(editedDVD);
-    }
     
     private int getEditMenuSelection() throws DVDLibraryDaoException {
         return view.printEditMenu();
     }
     private void editDVD() throws DVDLibraryDaoException {
-        
-        boolean keepEditing = true;
-        userEditResponse();
-        String userResponse = view.displayKeepEditingBanner();
-        if(userResponse.equals("n")){
-            keepEditing = false;
-        }
-//        if(userResponse.equals("y")){
-//            editDVD();
-//        }
-        while(keepEditing){
-            String dvdID = view.getEditTitleID();
+    
+        String dvdID = view.getEditTitleID();
         DVD editedDVD = dao.getDVD(dvdID);
-        view.displayEditedDVDResult(editedDVD);
-            int editMenuSelection = 0;
+        if(editedDVD == null){
+            view.displayDoesNotExist();
+        }else{
+//        String userResponse = view.displayKeepEditingBanner();
+//        if(userResponse.equals("n")){
+//            keepEditing = false;
+//        }
+          view.displayDVD(editedDVD);
+          int editMenuSelection = 0;
+          boolean keepEditing = true;
+        while(keepEditing){
+            
+            
             editMenuSelection = getEditMenuSelection();
                         
             switch(editMenuSelection) {
@@ -180,7 +176,7 @@ public class DVDLibraryController {
         }
         view.displayFinishedEditingResult();
     }            
-         
+}         
     
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
           String newTitle = view.getTitle();
