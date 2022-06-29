@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class DVDLibraryController {
     
-    private DVDLibraryView view; //= new DVDLibraryView();
+    private DVDLibraryView view;
     private DVDLibraryDao dao = new DVDLibraryDaoFileImpl();
     private UserIO io = new UserIOConsoleImpl();
     
@@ -78,14 +78,14 @@ public class DVDLibraryController {
      
     private void listDVDs() throws DVDLibraryDaoException {
         view.displayDVDListBanner();
-        List<DVD> dvdList = dao.getAllDVDs();
-        view.displayDVDList(dvdList);
+        List<DVD> dvdList = dao.getAllDVDs(); // Gets list from dao
+        view.displayDVDList(dvdList); // Displays DVD list from view in : format
     }
     
     private void viewDVDInfo() throws DVDLibraryDaoException {
         view.displayDisplayDVDBanner();
-        String title = view.getTitle();
-        DVD dvd = dao.getDVD(title);
+        String dvdID = view.getDVDID();
+        DVD dvd = dao.getDVD(dvdID);
         view.displayDVDInfo(dvd);
     }
     

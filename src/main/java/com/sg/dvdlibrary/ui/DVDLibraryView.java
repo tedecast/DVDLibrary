@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DVDLibraryView {
     
-    private UserIO io; //= new UserIOConsoleImpl();
+    private UserIO io; 
     
     public DVDLibraryView(UserIO io){
         this.io = io;
@@ -89,7 +89,7 @@ public class DVDLibraryView {
     }
     public void displayDVDInfo(DVD dvd){
         if (dvd != null){
-            io.print("Id: " + dvd.getDVDID());
+            io.print("ID: " + dvd.getDVDID());
             io.print("Title: " + dvd.getTitle());
             io.print("Release Date: " + dvd.getReleaseDate());
             io.print("MPAA Rating: " + dvd.getMpaaRating());
@@ -180,7 +180,6 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
-    
     public String displayKeepEditingBanner(){
         return io.readString("Keep editing DVDs? (y/n)");
     }
