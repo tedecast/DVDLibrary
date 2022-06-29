@@ -194,15 +194,14 @@ public class DVDLibraryView {
     }
 
     public String displayKeepEditingBanner(){
-        return io.readString("DVD successfully edited. Keep editing DVDs? (y/n)");
+        return io.readString("Keep editing DVDs? (y/n)");
     }
     public void displayEditedDVDResult(DVD dvdRecord){
         if(dvdRecord != null){
             io.print("DVD successfully edited.");
         }else{
-        io.print("No such DVD exists.");
+            displayDoesNotExist();
         }
-        getHitEnter();
     }
     
     public void displayExitBanner() {
