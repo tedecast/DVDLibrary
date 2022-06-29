@@ -7,6 +7,7 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -23,6 +24,20 @@ public interface DVDLibraryDao {
     DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException;
     
     DVD removeDVD(String dvdID) throws DVDLibraryDaoException;
+
+    
+    
+    Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException;
+
+    Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException;
+
+    Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException;
+
+    Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException;
+    
+    Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException;
+    
+    
     
     
     DVD changeTitle(String dvdID, String title) throws DVDLibraryDaoException;
@@ -36,4 +51,5 @@ public interface DVDLibraryDao {
     DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryDaoException;
     
     DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryDaoException;
+    
 }

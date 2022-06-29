@@ -39,6 +39,35 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         loadLibrary();
         return dvds.get(dvdID);
     }
+    
+    
+
+    @Override
+    public Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
     @Override
     public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException {
@@ -59,9 +88,9 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     @Override
     public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
         loadLibrary();
-        prevDVDTitle = dvd.getDVDID();
-        DVD editDVD = dvds.remove(prevDVDTitle);
-        editDVD = dvds.put(dvdID, dvd);
+        prevDVDTitle = dvd.getDVDID(); // Gets DVD ID
+        DVD editDVD = dvds.remove(prevDVDTitle); // removes ^
+        editDVD = dvds.put(dvdID, dvd); // puts new DVD ID
         writeLibrary();
         return editDVD;
     }
@@ -71,8 +100,8 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     @Override
     public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryDaoException {
         loadLibrary();
-        DVD dvdToEdit = dvds.get(dvdID);
-        dvdToEdit.setTitle(dvd);
+        DVD dvdToEdit = dvds.get(dvdID); // Gets DVD ID
+        dvdToEdit.setTitle(dvd); // Sets new DVD Title
         writeLibrary();
         return dvdToEdit;
     }

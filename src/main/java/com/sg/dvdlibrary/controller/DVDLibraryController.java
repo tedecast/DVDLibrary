@@ -178,7 +178,8 @@ public class DVDLibraryController {
        
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
           String newTitle = view.getTitle(); // Please enter a title
-          dao.changeTitle(dvdID, newTitle); // changes title
+          dao.changeTitle(dvdID, newTitle); // changes titladd . 
+          
     }
     
     private void editReleaseDate(String dvdID) throws DVDLibraryDaoException {
