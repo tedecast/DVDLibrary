@@ -26,16 +26,16 @@ public interface DVDLibraryDao {
     DVD removeDVD(String dvdID) throws DVDLibraryDaoException;
 
     
-    
-    Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException;
 
-    Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException;
-
-    Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException;
-
-    Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException;
-    
-    Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException;
+//    Map<String, DVD> findTitle(String title) throws DVDLibraryDaoException;
+//
+//    Map<String, DVD> findReleaseDate(String releaseDate) throws DVDLibraryDaoException;
+//
+//    Map<String, DVD> findMpaaRating(String mpaaRating) throws DVDLibraryDaoException;
+//
+//    Map<String, DVD> findDirectorsName(String directorsName) throws DVDLibraryDaoException;
+//    
+//    Map<String, DVD> findStudioName(String studioName) throws DVDLibraryDaoException;
     
     
     
