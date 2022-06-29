@@ -189,7 +189,7 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
-    public void displaySuccessfullyEdited() {
+    public void displayEditSuccess() {
         io.print("DVD successfully edited.");
     }
     public String displayKeepEditingBanner(){
@@ -197,7 +197,7 @@ public class DVDLibraryView {
     }
     public void displayEditedDVDResult(DVD dvdRecord){
         if(dvdRecord != null){
-            io.print("DVD successfully edited.");
+            displayEditSuccess();
         }else{
             displayDoesNotExist();
         }
