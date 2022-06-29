@@ -159,49 +159,6 @@ public class DVDLibraryView {
             displayDoesNotExist();
         }
         
-    }   
-    
-//    
-//    public int printEditMenuAndGetSelection(DVD dvd){
-//        if (dvd != null){
-//            io.print("=== Edit DVD ===");
-//            io.print("1. Title: " + dvd.getTitle());
-//            io.print("2. Release Date: " + dvd.getReleaseDate());
-//            io.print("3. MPAA rating: " + dvd.getMpaaRating());
-//            io.print("4. Director's name: " + dvd.getDirectorsName());
-//            io.print("5. Studio: " + dvd.getStudioName());
-//            io.print("6. Comments: " + dvd.getUserRating());
-//            io.print("7. Edit All");
-//            io.print("8. Exit");
-//            
-//        }else{
-//            displayDoesNotExist();
-//        }
-//        return io.readInt("Please select from the above choices.", 1, 8);
-//    }
-    public int printEditMenu(){
-        io.print("=== Edit DVD ===");
-        io.print("1. Title");
-        io.print("2. Release Date");
-        io.print("3. MPAA rating");
-        io.print("4. Director's name");
-        io.print("5. Studio");
-        io.print("6. Comments");
-        io.print("7. Edit All");
-        io.print("8. Exit");
-            
-        return io.readInt("Please select from the above choices.", 1, 8);
-    }
-
-    public String displayKeepEditingBanner(){
-        return io.readString("Keep editing DVDs? (y/n)");
-    }
-    public void displayEditedDVDResult(DVD dvdRecord){
-        if(dvdRecord != null){
-            io.print("DVD successfully edited.");
-        }else{
-            displayDoesNotExist();
-        }
     }
     
     public void displayDVD(DVD dvd) {
@@ -218,6 +175,34 @@ public class DVDLibraryView {
         }
         getHitEnter();
     }
+    
+    public int printEditMenu(){
+        io.print("=== Edit DVD ===");
+        io.print("1. Title");
+        io.print("2. Release Date");
+        io.print("3. MPAA rating");
+        io.print("4. Director's name");
+        io.print("5. Studio");
+        io.print("6. Comments");
+        io.print("7. Edit All");
+        io.print("8. Edit other DVD");
+        io.print("9. Exit");
+            
+        return io.readInt("Please select from the above choices.", 1, 9);
+    }
+
+    public String displayKeepEditingBanner(){
+        return io.readString("Keep editing DVDs? (y/n)");
+    }
+    public void displayEditedDVDResult(DVD dvdRecord){
+        if(dvdRecord != null){
+            io.print("DVD successfully edited.");
+        }else{
+            displayDoesNotExist();
+        }
+    }
+    
+    
     
     public void displayExitBanner() {
         io.print("Good Bye!!!");

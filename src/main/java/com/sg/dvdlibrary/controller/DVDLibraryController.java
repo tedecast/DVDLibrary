@@ -129,16 +129,11 @@ public class DVDLibraryController {
         if(editedDVD == null){
             view.displayDoesNotExist();
         }else{
-//        String userResponse = view.displayKeepEditingBanner();
-//        if(userResponse.equals("n")){
-//            keepEditing = false;
-//        }
-          view.displayDVD(editedDVD);
-          int editMenuSelection = 0;
-          boolean keepEditing = true;
-        while(keepEditing){
-            
-            
+            view.displayDVD(editedDVD);
+            int editMenuSelection = 0;
+            boolean keepEditing = true;
+            while(keepEditing){
+                
             editMenuSelection = getEditMenuSelection();
                         
             switch(editMenuSelection) {
@@ -168,6 +163,9 @@ public class DVDLibraryController {
                     editUserRating(dvdID);
                     break;
                 case 8:
+                    editDVD();
+                    break;
+                case 9:
                     keepEditing = false;
                     break;
                 default:
