@@ -124,17 +124,17 @@ public class DVDLibraryController {
     }
     private void editDVD() throws DVDLibraryDaoException {
     
-        String dvdID = view.getEditTitleID();
-        DVD editedDVD = dao.getDVD(dvdID);
+        String dvdID = view.getEditTitleID(); // Please enter a DVD Title ID to edit
+        DVD editedDVD = dao.getDVD(dvdID); // Gets DVD ID from user ^
         if(editedDVD != null){
 //            view.displayDoesNotExist();
 //        }else{
-            view.displayDVD(editedDVD);
+            view.displayDVD(editedDVD); // Edit menu with the + for existing DVD
             int editMenuSelection = 0;
             boolean keepEditing = true;
             while(keepEditing){
                 
-            editMenuSelection = getEditMenuSelection();
+            editMenuSelection = getEditMenuSelection(); // Edit Menu without the +
                         
             switch(editMenuSelection) {
                 case 1:
