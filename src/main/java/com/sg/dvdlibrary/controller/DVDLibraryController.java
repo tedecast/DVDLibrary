@@ -93,6 +93,7 @@ public class DVDLibraryController {
     }
     
     private void findDVDByTitle() throws DVDLibraryDaoException {
+        view.displayFindDVDBanner();
         String title = view.getTitle();
         DVD dvd = dao.findDVDByTitle(title);
         view.displayDVDByTitle(dvd);
@@ -148,7 +149,7 @@ public class DVDLibraryController {
                 view.displayDoesNotExist(); // displays No such dvd Exists, then asks until ID is true
                 userResponse = view.displayKeepEditingBanner();
                 if(userResponse.equals("n")){
-                    preStopEdit = true;
+                    preStopEdit = true; //stops editing, goes to Finished editing, please hit enter to continue.
                     break;
                 }
                 
@@ -159,40 +160,48 @@ public class DVDLibraryController {
                 keepEditing = false;
                 break;
             } 
-            view.displayDVDSummary(editedDVD);
+            view.displayDVDSummary(editedDVD); // Edit Menu with +summary
             editMenuSelection = getEditMenuSelection(); // Edit Menu without the +summary
 
             switch(editMenuSelection) {
                 case 1:
                     editTitle(dvdID);
-                    userResponse = view.displayKeepEditingBanner();
+                    view.displayEditSuccess();
+                    userResponse = view.displayKeepEditingBanner(); // Displays DVD edit success
                     break;
                 case 2: 
                     editReleaseDate(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 3: 
                     editMpaaRating(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 4:
                     editDirectorName(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 5:
                     editStudioName(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 6:
                     editUserRating(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 7: 
+                    editTitle(dvdID);
                     editReleaseDate(dvdID);
                     editMpaaRating(dvdID);
                     editDirectorName(dvdID);
                     editStudioName(dvdID);
                     editUserRating(dvdID);
+                    view.displayEditSuccess();
                     userResponse = view.displayKeepEditingBanner();
                     break;
                 case 8:
@@ -212,38 +221,32 @@ public class DVDLibraryController {
     private void editTitle(String dvdID) throws DVDLibraryDaoException {
         String newTitle = view.getTitle(); // Please enter a title
         dao.changeTitle(dvdID, newTitle); // changes title 
-        view.displayEditSuccess(); // displays edit success
           
     }
     
     private void editReleaseDate(String dvdID) throws DVDLibraryDaoException {
         String newReleaseDate = view.getReleaseDate();
         dao.changeReleaseDate(dvdID, newReleaseDate);
-        view.displayEditSuccess(); 
     }
     
     private void editMpaaRating(String dvdID) throws DVDLibraryDaoException {
         String newMpaaRating = view.getMpaaRating();
         dao.changeMpaaRating(dvdID, newMpaaRating);
-        view.displayEditSuccess(); 
     }
     
     private void editDirectorName(String dvdID) throws DVDLibraryDaoException {
         String newDirectorName = view.getDirectorName();
         dao.changeDirectorName(dvdID, newDirectorName);
-        view.displayEditSuccess(); 
     }
     
     private void editUserRating(String dvdID) throws DVDLibraryDaoException {
         String newUserRating = view.getUserRating();
         dao.changeUserRating(dvdID, newUserRating);
-        view.displayEditSuccess(); 
     }
     
     private void editStudioName(String dvdID) throws DVDLibraryDaoException {
         String newStudioName = view.getStudioName();
-        dao.changeStudioName(dvdID, newStudioName);
-        view.displayEditSuccess(); 
+        dao.changeStudioName(dvdID, newStudioName); 
     }
     
 }

@@ -21,7 +21,7 @@ public class DVDLibraryView {
     }
 
     public int printMenuAndGetSelection() {
-        io.print("Main Menu");
+        io.print("=== Main Menu ===");
         io.print("1. Display DVD List");
         io.print("2. View DVD Information");
         io.print("3. Find DVD By Title");
@@ -104,9 +104,13 @@ public class DVDLibraryView {
         getHitEnter();
     }
     
+    public void displayFindDVDBanner() {
+        io.print("=== Find DVD By Title ===");
+    }
+    
     public void displayDVDByTitle(DVD dvd){
         if (dvd != null){
-            io.print("The title " + "'" + dvd.getTitle() + "'" + " exists.");
+            io.print("The title " + "'" + dvd.getTitle() + "'" + " exists in current DVD collection.");
         } else {
             displayDoesNotExist();
         }
@@ -174,6 +178,7 @@ public class DVDLibraryView {
             io.print("Director's name: " + dvd.getDirectorsName());
             io.print("User Rating: " + dvd.getUserRating());
             io.print("Studio: "+ dvd.getStudioName());
+            io.print("");
         } 
     }
     public int printEditMenu(){

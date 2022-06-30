@@ -1,4 +1,3 @@
-0004::HElloWorld::1990::PG::ndis::Studio::MEOW::
-0005::Okay::No::Yes::No::No::no::
-0002::YAYYY::Yes::OKAAAY::YUP::NO::m::
-0003::MEOW::3::3::3::rrrr::AWFUL::
+0002::Beetlejuice::March 30, 1988::PG-13::Tim Burton::Warner Bros.::Amazing film.::
+0003::Scream::December 20, 1996::PG-13::Wes Craven::Woods Entertainment::A great combination of scary and campy!::
+0001::Edward Scissorhands::December 7, 1990::PG-13::Tim Burton::20th Century Fox::One of a kind!::
