@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface DVDLibraryServiceLayer {
     
-    public void createDVD(DVD dvd) throws DVDLibraryDuplicateIdException, 
+    public void addDVD(DVD dvd) throws DVDLibraryDuplicateIdException, 
             DVDLibraryDataValidationException, 
             DVDLibraryPersistenceException;
 
@@ -25,7 +25,7 @@ public interface DVDLibraryServiceLayer {
     
     DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException;
 
-    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException;
+//    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException;
     
     DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException;
     

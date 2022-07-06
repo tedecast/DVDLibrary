@@ -8,6 +8,8 @@ package com.sg.dvdlibrary;
 import com.sg.dvdlibrary.controller.DVDLibraryController;
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
+import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
+import com.sg.dvdlibrary.service.DVDLibraryServiceLayerImpl;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
 import com.sg.dvdlibrary.ui.UserIO;
 import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
@@ -22,7 +24,8 @@ public class App {
         UserIO myIO = new UserIOConsoleImpl();
         DVDLibraryView myView = new DVDLibraryView(myIO);
         DVDLibraryDao myDao = new DVDLibraryDaoFileImpl();
-        DVDLibraryController controller = new DVDLibraryController(myDao, myView);
+        DVDLibraryServiceLayer myService = new DVDLibraryServiceLayerImpl(myDao);
+        DVDLibraryController controller = new DVDLibraryController(myService, myView);
         controller.run();
     }
 }
