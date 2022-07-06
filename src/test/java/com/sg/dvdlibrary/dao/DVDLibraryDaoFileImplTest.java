@@ -7,6 +7,7 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
 import java.io.FileWriter;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -77,6 +78,46 @@ public class DVDLibraryDaoFileImplTest {
        
        assertEquals(dvd.getUserRating(), 
                retrievedDVD.getUserRating(), 
-               "Checking DVD comments.");    }
+               "Checking DVD comments.");    
+    }
+    
+    @Test
+    public void testAddGetAllDVDs() throws Exception {
+        // Create our first DVD
+        DVD dvd1 = new DVD("0001");
+        dvd1.setTitle("Edward Scissorhands");
+        dvd1.setReleaseDate("December 7, 1990");
+        dvd1.setMpaaRating("PG-13");
+        dvd1.setDirectorsName("Tim Burton");
+        dvd1.setStudioName("20th Century Fox");
+        dvd1.setUserRating("One of a kind!");
+        
+        // Create our second DVD
+        DVD dvd2 = new DVD ("0002");
+        dvd2.setTitle("Beetlejuice");
+        dvd2.setReleaseDate("March 30, 1988");
+        dvd2.setMpaaRating("PG");
+        dvd2.setDirectorsName("Tim Burton");
+        dvd2.setStudioName("Warner Bros.");
+        dvd2.setUserRating("Spooky OOky!");
+        
+        // Add both our DVDs to the DAO
+        testDao.addDVD(dvd1.getDVDID(), dvd1);
+        testDao.addDVD(dvd2.getDVDID(), dvd2);
+        
+        // Retrieve the list of all DVDs within the DAO
+        List<DVD> allDVDs = testDao.getAllDVDs();
+        
+        // First check the general contents of the list
+        assertNotNull(allDVDs, "The lsit of dvds must not null");
+        assertEquals(2, allDVDs.size(), "List of DVDs should have 2 students.");
+        
+        // Then the specifics
+        assertTrue(testDao.getAllDVDs().contains(dvd1),
+                "The list of DVDs should include Edward Scissorhands.");
+        
+        assertTrue(testDao.getAllDVDs(). contains(dvd2),
+                "The list of DVDs should include Beetlejuice.");
+    }
     
 }
