@@ -6,7 +6,7 @@
 package com.sg.dvdlibrary.controller;
 
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
-import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
+import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.sg.dvdlibrary.dto.DVD;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
@@ -64,7 +64,7 @@ public class DVDLibraryController {
                 }
             }
                exitMessage();
-            } catch (DVDLibraryDaoException e){
+            } catch (DVDLibraryPersistenceException e){
                 view.displayErrorMessage(e.getMessage());
             }
     }
@@ -79,27 +79,27 @@ public class DVDLibraryController {
         view.displayExitBanner();
     }
      
-    private void listDVDs() throws DVDLibraryDaoException {
+    private void listDVDs() throws DVDLibraryPersistenceException {
         view.displayDVDListBanner();
         List<DVD> dvdList = dao.getAllDVDs(); // Gets list from dao
         view.displayDVDList(dvdList); // Displays DVD list from view in : format
     }
     
-    private void viewDVDInfo() throws DVDLibraryDaoException {
+    private void viewDVDInfo() throws DVDLibraryPersistenceException {
         view.displayDisplayDVDBanner();
         String dvdID = view.getDVDID(); // Gets DVD ID from user
         DVD dvd = dao.getDVD(dvdID); // Gets DVD and then
         view.displayDVDInfo(dvd); // displays result whether it exists or not
     }
     
-    private void findDVDByTitle() throws DVDLibraryDaoException {
+    private void findDVDByTitle() throws DVDLibraryPersistenceException {
         view.displayFindDVDBanner();
         String title = view.getTitle();
         DVD dvd = dao.findDVDByTitle(title);
         view.displayDVDByTitle(dvd);
     }
     
-    private void addDVD() throws DVDLibraryDaoException {
+    private void addDVD() throws DVDLibraryPersistenceException {
         boolean keepAdding = true;
         while(keepAdding){
             view.displayAddDVDBanner();
@@ -113,7 +113,7 @@ public class DVDLibraryController {
         view.displayFinishedAddingResult(); // finished adding, please hit enter to continue
     }
     
-    public void removeDVD() throws DVDLibraryDaoException {
+    public void removeDVD() throws DVDLibraryPersistenceException {
         boolean keepRemoving = true;
         while(keepRemoving){
             view.displayRemoveDVDBanner();
@@ -129,10 +129,10 @@ public class DVDLibraryController {
     }
    
     
-    private int getEditMenuSelection() throws DVDLibraryDaoException {
+    private int getEditMenuSelection() throws DVDLibraryPersistenceException {
         return view.printEditMenu();
     }
-    private void editDVD() throws DVDLibraryDaoException {
+    private void editDVD() throws DVDLibraryPersistenceException {
         
         int editMenuSelection = 0;
         String dvdID;
@@ -218,33 +218,33 @@ public class DVDLibraryController {
     }           
              
        
-    private void editTitle(String dvdID) throws DVDLibraryDaoException {
+    private void editTitle(String dvdID) throws DVDLibraryPersistenceException {
         String newTitle = view.getTitle(); // Please enter a title
         dao.changeTitle(dvdID, newTitle); // changes title 
           
     }
     
-    private void editReleaseDate(String dvdID) throws DVDLibraryDaoException {
+    private void editReleaseDate(String dvdID) throws DVDLibraryPersistenceException {
         String newReleaseDate = view.getReleaseDate();
         dao.changeReleaseDate(dvdID, newReleaseDate);
     }
     
-    private void editMpaaRating(String dvdID) throws DVDLibraryDaoException {
+    private void editMpaaRating(String dvdID) throws DVDLibraryPersistenceException {
         String newMpaaRating = view.getMpaaRating();
         dao.changeMpaaRating(dvdID, newMpaaRating);
     }
     
-    private void editDirectorName(String dvdID) throws DVDLibraryDaoException {
+    private void editDirectorName(String dvdID) throws DVDLibraryPersistenceException {
         String newDirectorName = view.getDirectorName();
         dao.changeDirectorName(dvdID, newDirectorName);
     }
     
-    private void editUserRating(String dvdID) throws DVDLibraryDaoException {
+    private void editUserRating(String dvdID) throws DVDLibraryPersistenceException {
         String newUserRating = view.getUserRating();
         dao.changeUserRating(dvdID, newUserRating);
     }
     
-    private void editStudioName(String dvdID) throws DVDLibraryDaoException {
+    private void editStudioName(String dvdID) throws DVDLibraryPersistenceException {
         String newStudioName = view.getStudioName();
         dao.changeStudioName(dvdID, newStudioName); 
     }

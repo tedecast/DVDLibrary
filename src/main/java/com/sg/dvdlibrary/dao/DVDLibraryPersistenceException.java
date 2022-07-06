@@ -9,13 +9,13 @@ package com.sg.dvdlibrary.dao;
  *
  * @author Teresa
  */
-public class DVDLibraryDaoException extends Exception {
+public class DVDLibraryPersistenceException extends Exception {
     
-    public DVDLibraryDaoException(String message){
+    public DVDLibraryPersistenceException(String message){
         super(message);
     }
     
-    public DVDLibraryDaoException(String message, Throwable cause){
+    public DVDLibraryPersistenceException(String message, Throwable cause){
         super(message, cause);
     }
 }

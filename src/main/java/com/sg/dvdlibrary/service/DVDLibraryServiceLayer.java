@@ -5,6 +5,7 @@
  */
 package com.sg.dvdlibrary.service;
 
+import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
 import java.util.List;
 

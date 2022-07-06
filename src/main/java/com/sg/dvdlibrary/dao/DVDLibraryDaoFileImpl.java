@@ -39,19 +39,19 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     public static final String DELIMITER = "::";
 
     @Override
-    public List<DVD> getAllDVDs() throws DVDLibraryDaoException {
+    public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException {
         loadLibrary();
         return new ArrayList<DVD>(dvds.values());
     }
 
     @Override
-    public DVD getDVD(String dvdID) throws DVDLibraryDaoException {
+    public DVD getDVD(String dvdID) throws DVDLibraryPersistenceException {
         loadLibrary();
         return dvds.get(dvdID);
     }
     
     @Override
-    public DVD findDVDByTitle(String title) throws DVDLibraryDaoException {
+    public DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException {
         loadLibrary();
         Collection<DVD> dvdLibrary = dvds.values();
         // loops through the values to get title
@@ -65,7 +65,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException {
+    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD prevDVD = dvds.put(dvdID, dvd);
         writeLibrary();
@@ -73,7 +73,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
     
     @Override
-    public DVD removeDVD(String dvdID) throws DVDLibraryDaoException {
+    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD removedDVD = dvds.remove(dvdID);
         writeLibrary();
@@ -81,7 +81,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
     
     @Override
-    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException {
+    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException {
         loadLibrary();
         prevDVDTitle = dvd.getDVDID(); // Gets DVD ID
         DVD editDVD = dvds.remove(prevDVDTitle); // removes ^
@@ -92,7 +92,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
 
    
     @Override
-    public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryDaoException {
+    public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID); // Gets DVD ID
         dvdToEdit.setTitle(dvd); // Sets new DVD Title
@@ -101,7 +101,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
     
     @Override
-    public DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryDaoException {
+    public DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setReleaseDate(releaseDate);
@@ -110,7 +110,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryDaoException {
+    public DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setMpaaRating(mpaaRating);
@@ -119,7 +119,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryDaoException {
+    public DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setDirectorsName(directorName);
@@ -128,7 +128,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryDaoException {
+    public DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setUserRating(userRating);
@@ -137,7 +137,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     }
 
     @Override
-    public DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryDaoException {
+    public DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryPersistenceException {
         loadLibrary();
         DVD dvdToEdit = dvds.get(dvdID);
         dvdToEdit.setStudioName(studioName);
@@ -161,7 +161,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         
     }
     
-    private void loadLibrary() throws DVDLibraryDaoException {
+    private void loadLibrary() throws DVDLibraryPersistenceException {
         Scanner scanner;
         
         try {
@@ -169,7 +169,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
             new BufferedReader(
                 new FileReader(LIBRARY_FILE)));
         } catch (FileNotFoundException e) {
-            throw new DVDLibraryDaoException(
+            throw new DVDLibraryPersistenceException(
                 "-_- Could not load library data into memory.", e);
         }
         String currentLine;
@@ -197,13 +197,13 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         return dvdAsText;
     }
     
-    private void writeLibrary() throws DVDLibraryDaoException {
+    private void writeLibrary() throws DVDLibraryPersistenceException {
         PrintWriter out;
         
         try {
             out = new PrintWriter(new FileWriter(LIBRARY_FILE));
         } catch (IOException e){
-            throw new DVDLibraryDaoException(
+            throw new DVDLibraryPersistenceException(
                 "Could not save DVD data.", e);   
         }
         String dvdAsText;

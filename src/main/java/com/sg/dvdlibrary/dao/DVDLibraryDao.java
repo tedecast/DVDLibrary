@@ -15,29 +15,29 @@ import java.util.List;
  */
 public interface DVDLibraryDao {
 
-    List<DVD> getAllDVDs() throws DVDLibraryDaoException;
+    List<DVD> getAllDVDs() throws DVDLibraryPersistenceException;
 
-    DVD getDVD(String dvdID) throws DVDLibraryDaoException;
+    DVD getDVD(String dvdID) throws DVDLibraryPersistenceException;
     
-    DVD findDVDByTitle(String title) throws DVDLibraryDaoException;
+    DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException;
 
-    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryDaoException;
+    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException;
     
-    DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryDaoException;
+    DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException;
     
-    DVD removeDVD(String dvdID) throws DVDLibraryDaoException;
+    DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException;
 
     
-    DVD changeTitle(String dvdID, String title) throws DVDLibraryDaoException;
+    DVD changeTitle(String dvdID, String title) throws DVDLibraryPersistenceException;
             
-    DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryDaoException;
+    DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryPersistenceException;
     
-    DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryDaoException;
+    DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryPersistenceException;
     
-    DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryDaoException;
+    DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryPersistenceException;
     
-    DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryDaoException;
+    DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryPersistenceException;
     
-    DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryDaoException;
+    DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryPersistenceException;
     
 }
