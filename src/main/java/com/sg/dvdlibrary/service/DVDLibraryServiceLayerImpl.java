@@ -24,22 +24,29 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
 
     @Override
     public void createDVD(DVD dvd) throws DVDLibraryDuplicateIdException, DVDLibraryDataValidationException, DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if(dao.getDVD(dvd.getDVDID()) != null){
+            throw new DVDLibraryDuplicateIdException("ERROR: Could not create DVD. DVD ID " + dvd.getDVDID() + " already exists.");
+        }
+        
+        validateDVDData(dvd);
+        
+        dao.addDVD(dvd.getDVDID(), dvd);
     }
 
     @Override
     public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.getAllDVDs();
     }
 
     @Override
     public DVD getDVD(String dvdID) throws DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.getDVD(dvdID);
     }
 
     @Override
     public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.removeDVD(dvdID);
     }
     
     private void validateDVDData(DVD dvd) throws DVDLibraryDataValidationException {
