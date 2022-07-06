@@ -48,6 +48,7 @@ public class DVDLibraryDaoFileImplTest {
        
        // Add the DVD to the DAO
        testDao.addDVD(dvdID, dvd);
+       
        // Get the DVD from the DAO
        DVD retrievedDVD = testDao.getDVD(dvdID);
        
