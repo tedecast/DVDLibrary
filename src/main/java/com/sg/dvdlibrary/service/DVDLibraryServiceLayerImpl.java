@@ -48,11 +48,6 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
     public DVD getDVD(String dvdID) throws DVDLibraryPersistenceException {
         return dao.getDVD(dvdID);
     }
-
-    @Override
-    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
-        return dao.removeDVD(dvdID);
-    }
     
     @Override
     public DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException {
@@ -65,6 +60,69 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
         }
         return null;
     }
+    
+    
+    @Override
+    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException {
+        DVD prevDVD = dvds.put(dvdID, dvd);
+        return prevDVD;
+    }
+    
+    @Override
+    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
+        return dao.removeDVD(dvdID);
+    }
+    
+    @Override
+    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException {
+        prevDVDTitle = dvd.getDVDID(); // Gets DVD ID
+        DVD editDVD = dvds.remove(prevDVDTitle); // removes ^
+        editDVD = dvds.put(dvdID, dvd); // puts new DVD ID
+        return editDVD;
+    }
+
+    @Override
+    public DVD changeTitle(String dvdID, String dvd) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID); // Gets DVD ID
+        dvdToEdit.setTitle(dvd); // Sets new DVD Title
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setReleaseDate(releaseDate);
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setMpaaRating(mpaaRating);
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setDirectorsName(directorName);
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setUserRating(userRating);
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryPersistenceException {
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setStudioName(studioName);
+        return dvdToEdit;
+    }
+
     
     private void validateDVDData(DVD dvd) throws DVDLibraryDataValidationException {
         if (dvd.getTitle() == null || dvd.getTitle().trim().length() == 0 ||

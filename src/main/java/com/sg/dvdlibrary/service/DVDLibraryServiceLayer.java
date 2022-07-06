@@ -18,12 +18,29 @@ public interface DVDLibraryServiceLayer {
     public void createDVD(DVD dvd) throws DVDLibraryDuplicateIdException, 
             DVDLibraryDataValidationException, 
             DVDLibraryPersistenceException;
-    
-    public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException;
-    
-    public DVD getDVD(String dvdID) throws DVDLibraryPersistenceException;
-    
-    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException;
+
+    List<DVD> getAllDVDs() throws DVDLibraryPersistenceException;
+
+    DVD getDVD(String dvdID) throws DVDLibraryPersistenceException;
     
     DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException;
+
+    DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException;
+    
+    DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException;
+    
+    DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException;
+
+    
+    DVD changeTitle(String dvdID, String title) throws DVDLibraryPersistenceException;
+            
+    DVD changeReleaseDate(String dvdID, String releaseDate) throws DVDLibraryPersistenceException;
+    
+    DVD changeMpaaRating(String dvdID, String mpaaRating) throws DVDLibraryPersistenceException;
+    
+    DVD changeDirectorName(String dvdID, String directorName) throws DVDLibraryPersistenceException;
+    
+    DVD changeUserRating(String dvdID, String userRating) throws DVDLibraryPersistenceException;
+    
+    DVD changeStudioName(String dvdID, String studioName) throws DVDLibraryPersistenceException;
 }
