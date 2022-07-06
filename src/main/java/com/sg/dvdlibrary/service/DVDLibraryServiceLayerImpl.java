@@ -5,6 +5,7 @@
  */
 package com.sg.dvdlibrary.service;
 
+import com.sg.dvdlibrary.dao.DVDLibraryAuditDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
@@ -20,9 +21,11 @@ import java.util.Map;
 public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
     
     private DVDLibraryDao dao;
-    
-    public DVDLibraryServiceLayerImpl(DVDLibraryDao dao){
+    private DVDLibraryAuditDao auditDao;
+   
+    public DVDLibraryServiceLayerImpl(DVDLibraryDao dao, DVDLibraryAuditDao auditDdao){
         this.dao = dao;
+        this.auditDao = auditDao;
     }
     
     private Map<String, DVD> dvds = new HashMap<>();
@@ -37,6 +40,8 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
         validateDVDData(dvd);
         
         dao.addDVD(dvd.getDVDID(), dvd);
+        
+        auditDao.writeAuditEntry("DVD " + dvd.getDVDID() + " CREATED");
     }
     
 //    @Override
@@ -44,6 +49,23 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
 //        DVD prevDVD = dvds.put(dvdID, dvd);
 //        return prevDVD;
 //    }
+    
+    
+    
+    @Override
+    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
+        DVD removedDVD = dao.removeDVD(dvdID);
+        auditDao.writeAuditEntry("DVD " + dvdID + " REMOVED");
+        return removedDVD;
+    }
+    
+    @Override
+    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException {
+        prevDVDTitle = dvd.getDVDID(); // Gets DVD ID
+        DVD editDVD = dvds.remove(prevDVDTitle); // removes ^
+        editDVD = dvds.put(dvdID, dvd); // puts new DVD ID
+        return editDVD;
+    }
 
     @Override
     public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException {
@@ -65,19 +87,6 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
            }
         }
         return null;
-    }
-    
-    @Override
-    public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException {
-        return dao.removeDVD(dvdID);
-    }
-    
-    @Override
-    public DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle) throws DVDLibraryPersistenceException {
-        prevDVDTitle = dvd.getDVDID(); // Gets DVD ID
-        DVD editDVD = dvds.remove(prevDVDTitle); // removes ^
-        editDVD = dvds.put(dvdID, dvd); // puts new DVD ID
-        return editDVD;
     }
 
     @Override

@@ -3,9 +3,11 @@ C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\ui\DVDLibrary
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\dao\DVDLibraryPersistenceException.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\service\DVDLibraryServiceLayerImpl.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\service\DVDLibraryServiceLayer.java
+C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\dao\DVDLibraryAuditDaoFileImpl.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\dto\DVD.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\service\DVDLibraryDataValidationException.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\ui\UserIOConsoleImpl.java
+C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\dao\DVDLibraryAuditDao.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\dao\DVDLibraryDaoFileImpl.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\App.java
 C:\Users\Teresa\Desktop\DVDLibrary\src\main\java\com\sg\dvdlibrary\service\DVDLibraryDuplicateIdException.java

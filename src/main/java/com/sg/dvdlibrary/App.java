@@ -6,6 +6,8 @@
 package com.sg.dvdlibrary;
 
 import com.sg.dvdlibrary.controller.DVDLibraryController;
+import com.sg.dvdlibrary.dao.DVDLibraryAuditDao;
+import com.sg.dvdlibrary.dao.DVDLibraryAuditDaoFileImpl;
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
@@ -24,7 +26,8 @@ public class App {
         UserIO myIO = new UserIOConsoleImpl();
         DVDLibraryView myView = new DVDLibraryView(myIO);
         DVDLibraryDao myDao = new DVDLibraryDaoFileImpl();
-        DVDLibraryServiceLayer myService = new DVDLibraryServiceLayerImpl(myDao);
+        DVDLibraryAuditDao myAuditDao = new DVDLibraryAuditDaoFileImpl();
+        DVDLibraryServiceLayer myService = new DVDLibraryServiceLayerImpl(myDao, myAuditDao);
         DVDLibraryController controller = new DVDLibraryController(myService, myView);
         controller.run();
     }
