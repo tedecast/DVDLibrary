@@ -23,7 +23,6 @@ public class DVDLibraryController {
     
     private DVDLibraryServiceLayer service;
     private DVDLibraryView view;
-    private UserIO io = new UserIOConsoleImpl();
     
     public DVDLibraryController(DVDLibraryServiceLayer service, DVDLibraryView view){
         this.service = service;

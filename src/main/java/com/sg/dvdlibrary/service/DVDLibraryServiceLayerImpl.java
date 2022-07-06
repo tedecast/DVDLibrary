@@ -28,7 +28,7 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
     private Map<String, DVD> dvds = new HashMap<>();
 
     @Override
-    public void createDVD(DVD dvd) throws DVDLibraryDuplicateIdException, DVDLibraryDataValidationException, DVDLibraryPersistenceException {
+    public void addDVD(DVD dvd) throws DVDLibraryDuplicateIdException, DVDLibraryDataValidationException, DVDLibraryPersistenceException {
         
         if(dao.getDVD(dvd.getDVDID()) != null){
             throw new DVDLibraryDuplicateIdException("ERROR: Could not create DVD. DVD ID " + dvd.getDVDID() + " already exists.");
@@ -38,6 +38,12 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
         
         dao.addDVD(dvd.getDVDID(), dvd);
     }
+    
+//    @Override
+//    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException {
+//        DVD prevDVD = dvds.put(dvdID, dvd);
+//        return prevDVD;
+//    }
 
     @Override
     public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException {
@@ -59,13 +65,6 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
            }
         }
         return null;
-    }
-    
-    
-    @Override
-    public DVD addDVD(String dvdID, DVD dvd) throws DVDLibraryPersistenceException {
-        DVD prevDVD = dvds.put(dvdID, dvd);
-        return prevDVD;
     }
     
     @Override
