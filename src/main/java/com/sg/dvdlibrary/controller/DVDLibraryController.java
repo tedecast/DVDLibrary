@@ -9,6 +9,8 @@ import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.sg.dvdlibrary.dto.DVD;
+import com.sg.dvdlibrary.service.DVDLibraryDataValidationException;
+import com.sg.dvdlibrary.service.DVDLibraryDuplicateIdException;
 import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
 import com.sg.dvdlibrary.ui.UserIO;
@@ -103,14 +105,26 @@ public class DVDLibraryController {
         boolean keepAdding = true;
         while(keepAdding){
             view.displayAddDVDBanner();
-            DVD newDVD = view.getNewDVDInfo(); // asks user for newDVDInfo
-            service.addDVD(newDVD.getDVDID(), newDVD);
+            boolean hasErrors = false;
+            
+            do {
+                DVD newDVD = view.getNewDVDInfo(); // asks user for newDVDInfo
+                try {
+                    service.addDVD(newDVD);
+                    view.displayFinishedAddingResult(); // finished adding, please hit enter to continue
+                    hasErrors = false;
+                } catch(DVDLibraryDuplicateIdException | DVDLibraryDataValidationException e){
+                    hasErrors = true;
+                    view.displayErrorMessage(e.getMessage());
+                }
+                
+            } while (hasErrors);
             String userResponse = view.displayKeepAddingBanner();
             if(userResponse.equals("n")){
                 keepAdding = false;
             } 
         }
-        view.displayFinishedAddingResult(); // finished adding, please hit enter to continue
+        
     }
     
     public void removeDVD() throws DVDLibraryPersistenceException {
