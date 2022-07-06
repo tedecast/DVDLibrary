@@ -5,6 +5,8 @@
  */
 package com.sg.dvdlibrary.dto;
 
+import java.util.Objects;
+
 /**
  *
  * @author Teresa
@@ -16,6 +18,60 @@ public class DVD {
     private String directorsName;
     private String studioName;
     private String userRating;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.title);
+        hash = 67 * hash + Objects.hashCode(this.releaseDate);
+        hash = 67 * hash + Objects.hashCode(this.mpaaRating);
+        hash = 67 * hash + Objects.hashCode(this.directorsName);
+        hash = 67 * hash + Objects.hashCode(this.studioName);
+        hash = 67 * hash + Objects.hashCode(this.userRating);
+        hash = 67 * hash + Objects.hashCode(this.dvdID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DVD other = (DVD) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.mpaaRating, other.mpaaRating)) {
+            return false;
+        }
+        if (!Objects.equals(this.directorsName, other.directorsName)) {
+            return false;
+        }
+        if (!Objects.equals(this.studioName, other.studioName)) {
+            return false;
+        }
+        if (!Objects.equals(this.userRating, other.userRating)) {
+            return false;
+        }
+        if (!Objects.equals(this.dvdID, other.dvdID)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DVD{" + "title=" + title + ", releaseDate=" + releaseDate + ", mpaaRating=" + mpaaRating + ", directorsName=" + directorsName + ", studioName=" + studioName + ", userRating=" + userRating + ", dvdID=" + dvdID + '}';
+    }
     private String dvdID;
     
     //dvdID does not have a setter, read only field. (key)
