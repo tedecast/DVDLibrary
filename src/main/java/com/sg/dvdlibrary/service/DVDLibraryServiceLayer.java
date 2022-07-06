@@ -24,4 +24,6 @@ public interface DVDLibraryServiceLayer {
     public DVD getDVD(String dvdID) throws DVDLibraryPersistenceException;
     
     public DVD removeDVD(String dvdID) throws DVDLibraryPersistenceException;
+    
+    DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException;
 }

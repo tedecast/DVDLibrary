@@ -9,6 +9,7 @@ import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.sg.dvdlibrary.dto.DVD;
+import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
 import com.sg.dvdlibrary.ui.UserIO;
 import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
@@ -20,12 +21,12 @@ import java.util.List;
  */
 public class DVDLibraryController {
     
+    private DVDLibraryServiceLayer service;
     private DVDLibraryView view;
-    private DVDLibraryDao dao = new DVDLibraryDaoFileImpl();
     private UserIO io = new UserIOConsoleImpl();
     
-    public DVDLibraryController(DVDLibraryDao dao, DVDLibraryView view){
-        this.dao = dao;
+    public DVDLibraryController(DVDLibraryServiceLayer service, DVDLibraryView view){
+        this.service = service;
         this.view = view;
     }
     
@@ -81,21 +82,21 @@ public class DVDLibraryController {
      
     private void listDVDs() throws DVDLibraryPersistenceException {
         view.displayDVDListBanner();
-        List<DVD> dvdList = dao.getAllDVDs(); // Gets list from dao
+        List<DVD> dvdList = service.getAllDVDs(); // Gets list from dao
         view.displayDVDList(dvdList); // Displays DVD list from view in : format
     }
     
     private void viewDVDInfo() throws DVDLibraryPersistenceException {
         view.displayDisplayDVDBanner();
         String dvdID = view.getDVDID(); // Gets DVD ID from user
-        DVD dvd = dao.getDVD(dvdID); // Gets DVD and then
+        DVD dvd = service.getDVD(dvdID); // Gets DVD and then
         view.displayDVDInfo(dvd); // displays result whether it exists or not
     }
     
     private void findDVDByTitle() throws DVDLibraryPersistenceException {
         view.displayFindDVDBanner();
         String title = view.getTitle();
-        DVD dvd = dao.findDVDByTitle(title);
+        DVD dvd = service.findDVDByTitle(title);
         view.displayDVDByTitle(dvd);
     }
     
@@ -104,7 +105,7 @@ public class DVDLibraryController {
         while(keepAdding){
             view.displayAddDVDBanner();
             DVD newDVD = view.getNewDVDInfo(); // asks user for newDVDInfo
-            dao.addDVD(newDVD.getDVDID(), newDVD);
+            service.addDVD(newDVD.getDVDID(), newDVD);
             String userResponse = view.displayKeepAddingBanner();
             if(userResponse.equals("n")){
                 keepAdding = false;

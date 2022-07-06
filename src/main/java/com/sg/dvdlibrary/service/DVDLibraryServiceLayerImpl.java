@@ -8,7 +8,10 @@ package com.sg.dvdlibrary.service;
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,6 +24,8 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
     public DVDLibraryServiceLayerImpl(DVDLibraryDao dao){
         this.dao = dao;
     }
+    
+    private Map<String, DVD> dvds = new HashMap<>();
 
     @Override
     public void createDVD(DVD dvd) throws DVDLibraryDuplicateIdException, DVDLibraryDataValidationException, DVDLibraryPersistenceException {
@@ -49,6 +54,18 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
         return dao.removeDVD(dvdID);
     }
     
+    @Override
+    public DVD findDVDByTitle(String title) throws DVDLibraryPersistenceException {
+        Collection<DVD> dvdLibrary = dvds.values();
+        // loops through the values to get title
+        for (DVD currentDVD : dvdLibrary) {
+           if(currentDVD.getTitle().equals(title)){
+               return currentDVD;
+           }
+        }
+        return null;
+    }
+    
     private void validateDVDData(DVD dvd) throws DVDLibraryDataValidationException {
         if (dvd.getTitle() == null || dvd.getTitle().trim().length() == 0 ||
                 dvd.getReleaseDate() == null || dvd.getReleaseDate().trim().length() == 0 ||
@@ -59,5 +76,7 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer {
                 throw new DVDLibraryDataValidationException("ERROR: All fields [Title, MPAA Rating, Director's Name, Studio Name, User Rating] are required");
         }
     }
+
+   
     
 }
